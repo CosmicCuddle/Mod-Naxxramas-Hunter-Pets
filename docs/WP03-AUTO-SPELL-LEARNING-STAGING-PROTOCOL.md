@@ -14,6 +14,12 @@ This experiment is intended to answer one narrow engineering question: **Can ori
 5. Start with **logging-only** hooks. Grant/remove/deny no spells until timing and default state are reproduced. Production characters and valuable stable pets are excluded.
 6. The owner's explicit approval is required for even an additive C++ proof-of-concept on staging; documentation does not grant approval.
 
+## Additional safety findings to retain during all future experiments
+
+Read [pet spell, packet and DB safety audit](PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) before any implementation. **Do not insert any guessed historical pet spell ID into native character pet_spell**: core's invalid-spell load cleanup can delete the same ID across **all pets** (`WHERE spell=?`, no pet GUID condition). The native pet `addSpell` immediately applies passives and may alter actionbar/rank/autocast states, even if later cast denial is installed. `CanPacketSend` only vetoes **entire packets**; it must return **true for every packet in logging-only pilots**. `OnPacketSent` is an outgoing *attempt* notification, not confirmed client receipt. Native PetNumber is recyclable.
+
+Use [ten focused WP-03 safety tests](../data/reference/wp03-pet-spell-safety-tests.csv) to document these hazards on *disposable, backup-protected* staging **only after future owner approval**.
+
 ## Experiment 0 — read-only source and build inventory
 
 Report:
