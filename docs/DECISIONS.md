@@ -1,0 +1,36 @@
+# Architecture and design decision log
+
+**Status legend**
+- **AGREED:** expressly selected by repository owner in the planning discussion.
+- **PROPOSED:** recommendation, not yet decided.
+- **OPEN:** needs owner/technical finding.
+- **BLOCKED:** cannot be assumed to work.
+
+| ID | Status | Decision / question | Rationale |
+|---|---|---|---|
+| D-001 | AGREED | Create separate experimental repository/module `Mod-Naxxramas-Hunter-Pets`. | Isolate risk; merge into Naxx Core only when tested. |
+| D-002 | AGREED | Restore **the full old Vanilla Hunter pet experience**, including original abilities, taming meaning, pet families, rare-beast traits, training, loyalty, feeding and pet progression. | The specific creature and effort to train it should matter. |
+| D-003 | AGREED | Vanilla behaviour persists throughout **all Vanilla Individual Progression stages**. | No arbitrary mid-Vanilla rule switch. |
+| D-004 | AGREED | Defer TBC behaviour/design until the server's progression reaches TBC planning. | Avoid premature conversion choices. |
+| D-005 | AGREED | Source changes must stay **inside standalone module** while experimental; no core, IP, Playerbots or Naxx Core source edits. | Strict module isolation. |
+| D-006 | AGREED | Repository currently serves as brainstorming and handover; implementation needs a later explicit work assignment. | Avoid unapproved code and live changes. |
+| D-007 | PROPOSED | Research against **late Vanilla 1.12-era** mechanics, with explicit exceptions if desired. | Consistent historical baseline. |
+| D-008 | PROPOSED | Use 3.3.5-safe NPC gossip UI first; optional addon/client patch requires separate assessment and approval. | Original Beast Training UI was removed from 3.3.5. |
+| D-009 | PROPOSED | Default experimental flags OFF; no live data changes, automatic abandonment or irreversible migrations during early pilots. | Player and pet safety. |
+| D-010 | OPEN | Post-Vanilla Hunter behaviour when mixed with Vanilla players: default WotLK, dormant module, or state migration? | Need careful future-era handling; never delete trained skills implicitly. |
+| D-011 | OPEN | Should historical pet runaway/abandonment be enabled once tested, and what warning/recovery protections are acceptable? | Historical fidelity vs irreversible loss. |
+| D-012 | OPEN | Which early Vanilla exceptional pet behaviours, if any (e.g. Lupos Shadow damage), are desirable? | Not part of the provisional 1.12 baseline. |
+| D-013 | OPEN | Native client/addon look, Beast Training window, classic stable limits and pet talent pane behaviour? | 3.3.5 UI limitations. |
+| D-014 | OPEN | Existing pre-project pets: opt-in conversion, grandfathering, or migration? | Never break valued Hunter pets. |
+| D-015 | OPEN | Allowed Hunter Playerbot skill setup policy, distinguished for Random vs Alt Bot. | Respect original gameplay and raid readiness. |
+| D-016 | BLOCKED / INVESTIGATE | Can all WotLK automatic pet spell learn events be safely prevented within module-only hooks? | Current PetScript shows unlearn guards, no generic pet-spell learn permission hook. |
+| D-017 | OPEN | Initial proof of concept: Broken Tooth speed first, then Son of Hakkar learn-by-use pilot. | Stage-gate the riskiest mechanics early. |
+| D-018 | OPEN | Exact effort/delivery after source audit. | 42–80 engineering days is an initial rough estimate, not a commitment. |
+
+## Approval discipline
+
+Update status only after an explicit owner decision or a documented reproducible technical finding. Record date, affected docs/files, user-visible impact, any backup requirements, and release state. A developer's suggestion is not an owner approval.
+
+## Future editor handoff prompt
+
+> Continue the planning and (only if separately authorized) staged experimental development of `CosmicCuddle/Mod-Naxxramas-Hunter-Pets`. Read the root README and all `docs/*.md` first. Maintain strict isolation from AzerothCore, mod-playerbots, Individual Progression and Naxxramas Core. Confirm actual deployed versions and prove module-only feasibility before broad implementation. Do not assume unapproved D-007 through D-018 choices, merge, install or release. Preserve original Hunter gameplay and all Vanilla IP stages. Report evidence and blockers explicitly.
