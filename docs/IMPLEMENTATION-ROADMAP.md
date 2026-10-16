@@ -1,7 +1,7 @@
 # Implementation roadmap — phased, gated, module-only
 
-**Status: proposal, not authorization to code or deploy.**
-**Estimated total:** **42–80 developer-days** as a broad initial *single-developer engineering* estimate. This excludes long waiting periods for the owner's in-game testing and may change substantially after the source audit. **No promised delivery date.**
+**Status: proposal, not authorization to code or deploy.** This staged roadmap is coordinated with the [unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROADMAP.md), [work package cards](WORK-PACKAGES.md) and [requirement traceability](../data/reference/requirement-traceability.csv).
+**Estimated total:** **42–80 developer-days** as a broad initial *single-developer engineering* estimate for overlapping activities. It is not a total created by adding every separately listed work package. The uncertain auto-skill interception, original data mapping and preservation of pre-existing pets may expand it. Excludes owner testing delays. Re-estimate after WP-00 and WP-03; **no promised delivery date**.
 
 ## Stage 0 — Baseline and safety inventory (research only)
 **Approx. 3–5 developer-days.**
