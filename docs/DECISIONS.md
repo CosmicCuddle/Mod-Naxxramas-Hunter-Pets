@@ -47,6 +47,9 @@
 
 | D-033 | SOURCE-REFERENCE VERIFIED / STRICT IMPLEMENTATION NOT APPROVED | Treat numerical spell ID survival from original-style Classic data to public 3.3.5 **only as identity evidence**, never as proof of identical effects or training legality. | Public reference differences documented for Screech 24579, Furious Howl 24604, Lightning Breath 25011, Growl 14916 and WotLK Stamina talent 61686 vs Vanilla-trained 4187. Require original 1.12 + installed 3.3.5 server/client DBC and matching runtime tests before use. |
 
+| D-034 | SOURCE-CONFIRMED / RESEARCH | Current public AzerothCore binds **`-24604` Furious Howl ranks** to `spell_hun_target_self_and_pet`, a filter that permits only pet and owner; same handler also covers 53434 Call of the Wild. | Vanilla party next-hit effect cannot be recovered by a naïve additive SpellScript target filter. Require exact deployed binding, rank-chain/DBC proof and a later-era-safe module-owned strategy; never globally delete native binding. |
+| D-035 | PROPOSED / NO IMPLEMENTATION APPROVAL | Prioritise **Screech R4 effect-level logging feasibility**, then Lightning Breath damage; **defer Furious Howl** until its existing binding and party proc conflict is resolved. | Public source exposes damage, aura amount and duration hooks but no documented safe per-owner Focus/cooldown/client tooltip fix. A partial numeric effect is NOT an approved original Vanilla restoration; strict pet auto-learn blocker persists. |
+
 ## Approval discipline
 
 Update status only after an explicit owner decision or a documented reproducible technical finding. Record date, affected docs/files, user-visible impact, any backup requirements, and release state. A developer's suggestion is not an owner approval.
