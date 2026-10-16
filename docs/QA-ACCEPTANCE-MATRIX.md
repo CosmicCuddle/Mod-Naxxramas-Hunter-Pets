@@ -131,6 +131,13 @@
 | ENG-55 | `ServerScript::CanPacketSend` whole-packet interception | No pet spellbook packets dropped during logging-only probe; packet filtering not claimed to prevent learn/passive changes |
 | ENG-56 | `OnPacketSent` instrumentation | Logs represent attempted packets even when no socket or packet later vetoed, never mislabelled 'client received' |
 | ENG-57 | `CanUnlearnSpellSet`/`CanUnlearnSpellDefault` returns false for a too-high rank | The native **else** branch executes `learnSpell` and can grant an ineligible rank; these hooks are never used as learn prevention |
+| ENG-58 | Actual 3.3.5 family-levelup grant list | For each family, match **both** CreatureFamily skill lines to SkillLineAbility `AcquireMethod`, valid SpellStore `SpellLevel>0`; no assumed ID from empty SQL placeholders |
+| ENG-59 | Actual 3.3.5 family-passive grants | Independently enumerate family skill-line `AcquireMethod`, passive flag and `SpellLevel=0`; no passive incorrectly assumed a level-up rank |
+| ENG-60 | Actual 3.3.5 creature-specific default grants | Respect `PetSpellDataId`, negative map key, and only summonable-template fallback; deduplicate default spells versus family level-up list |
+| ENG-61 | Public base DBC SQL empty but deployed binary has data | Do not report native spells missing based on no base `INSERT` records; compare effective binary-plus-local-DB data and verify file hashes |
+| ENG-62 | All 17 Vanilla family identities against loaded 3.3.5 families | Source reference family is matched to verified `CreatureFamily.dbc ID` and its two skill lines, never guessed from name/model alone |
+| ENG-63 | All 21 Vanilla ability names / 111 rank records versus loaded 3.3.5 | Each rank classified by **actual** auto-levelup/default/passive status and 3.3.5 server/client spell effects; unresolved ranks remain `UNVERIFIED` |
+
 
 
 
