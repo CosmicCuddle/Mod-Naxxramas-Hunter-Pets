@@ -41,6 +41,13 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## Naxx Core / Individual Progression shared-era research
+
+- [IP stage adapter blueprint](IP-STAGE-ADAPTER-DESIGN.md) identifies Naxx Core's existing public-header modern/legacy compatibility (`MeetingStoneProgression.cpp`), modern human-issuer NT1 stage checks (`BotTalentImport.cpp`), and battlemaster bot exemptions (which must **not** be assumed applicable to pets).
+- [22-case owner/era acceptance matrix](../data/reference/ip-pet-owner-era-acceptance-matrix.csv) now covers human Vanilla subtiers, global `ProgressionLimit`, TBC/WotLK, IP disabled, Alt Bots, Random Bots, real IP bot group sync, pet damage scaling, XP and rollback.
+- Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
+- [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
+
 ## WotLK automatic rank suppression feasibility — no strict module-only solution proven
 
 - [Auto-spell learning feasibility report](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) shows current public **SpellMgr** loads Hunter family rank maps from 3.3.5 `CreatureFamily` + `SkillLineAbility` DBC into **global** read-only-exposed lists; Pet::learnSpell grants direct without per-owner learning veto. Editing global data/shared maps is not an approved or era-safe module mechanism.
