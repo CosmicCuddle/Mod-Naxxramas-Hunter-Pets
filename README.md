@@ -119,6 +119,7 @@ The [source-pinned pet lifecycle audit](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.m
 - [Pet spell-ID and effects research issue #3](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/3) — verify all 111 ranks, original/3.3.5 client compatibility and cross-era spell conflicts.
 - [WP-03 auto-spell module-only research issue #4](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/4) — strict Vanilla training vs core auto ranks, candidate spell-cast guard, client packet/passive test and staged GO/NO-GO.
 - [IP installed-stage and bot group-sync research issue #5](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/5) — verify actual installed IP owner era API and protect Alt Bot/Random Bot stage changes.
+- [WP-07 spell-effect hook feasibility issue #6](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/6) — test how original Screech, Furious Howl, Lightning Breath, Growl and Stamina effects could be restored inside the module without breaking WotLK spell targeting or client data.
 - **None of these research issues grants approval to implement code or change the server.**
 - The repository deliberately combines a **historical+technical blueprint** with a **dependency-ordered work programme**. Every research fact is tied to a work package, QA test and open/approved decision where possible.
 
