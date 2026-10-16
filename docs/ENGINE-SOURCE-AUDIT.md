@@ -15,6 +15,12 @@ The [exact file-blob audited lifecycle](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) an
 
 These findings are **public source facts only**. No compiled live worldserver SHA, installed IP module, or deployed client DBC has been checked.
 
+## Pet auto-rank data-source and interception investigation
+
+The [detailed auto-learning feasibility decision](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md), [16-path comparison](../data/reference/auto-spell-interception-candidates.csv) and [proposed WP-03 controlled staging protocol](WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md) supersede simplistic suggestions that `OnPetAddToWorld` can prevent ranks. Public `SpellMgr::LoadPetLevelupSpellMap` builds a **global per-family** spell list from `CreatureFamily.dbc` and `SkillLineAbility.dbc`; `Pet::InitLevelupSpellsForLevel` directly calls `learnSpell`, with no per-owner veto in inspected PetScript. Global map/data mutations are unsafe across IP eras.
+
+**Fallback only, untested:** global `AllSpellScript::OnSpellCheckCast` could block illegal **active casts** by a Vanilla Hunter pet; `Pet::isBeingLoaded` and player update hook could permit **later** reconciliation. But existing-pet native `PetSpellInitialize` happens **before `isBeingLoaded = false`**, and passive auras are not blocked by a cast hook. Neither is a strict Vanilla spellbook implementation. Stop before code and report owner decision rather than calling it fixed.
+
 ## AzerothCore 3.3.5a — primary target
 
 | Location / symbol | Observed behaviour | Design implication |
