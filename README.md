@@ -38,6 +38,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Installed IP read-only MobaXterm inventory](docs/READ-ONLY-INSTALLED-IP-INVENTORY.md) — no git pull, no SQL, no config changes; identify exact running/source versions and cross-check IP stage.
 - [22-scenario IP Hunter-pet acceptance matrix](data/reference/ip-pet-owner-era-acceptance-matrix.csv) — all Vanilla stages, TBC/WotLK, Alt/Random Bots, group sync and capped XP.
 - [IP Hunter-pet precedent and compatibility audit](docs/IP-HUNTER-PET-PRECEDENT-AUDIT.md) — **IP's owner-stage-aware pet damage/XP hooks are reusable as a design pattern**, but its Player spell cancellation is not a pet auto-learn veto; historical HunterPetLevelFix complaint documented.
+- [Read-only WotLK pet DBC inputs (MobaXterm + HeidiSQL)](docs/READ-ONLY-WOTLK-PET-DBC-INPUT-CHECKLIST.md) — hashes and optional world SQL override counts; no source/download, DB or client changes.
 - [WotLK three-path auto-grant DBC audit](docs/WOTLK-AUTO-GRANT-DBC-COMPARISON.md) — exact family level-up, creature-specific defaults and family passive source rules; why public base SQL has no actual spell data.
 - [21-ability Vanilla vs WotLK comparison](data/reference/wotlk-versus-vanilla-ability-audit.csv) — **111** candidate rank records grouped by Vanilla ability, each with three separate unverified 3.3.5 grant paths.
 - [17-family WotLK grant audit](data/reference/wotlk-family-auto-grant-audit.csv) — per-family skill lines, template defaults and generated passive spell audit slots.
