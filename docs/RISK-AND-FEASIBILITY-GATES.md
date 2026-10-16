@@ -35,6 +35,11 @@
 | R-24 | **Critical** | Core emits native pet spellbook packet on async load before `isBeingLoaded=false`; levelup `learnSpell` sends packets immediately outside load | A later player update reconcile cannot promise clean Vanilla spell UI; stop/review if client sees unearned rank |
 | R-25 | High | `AllSpellScript::OnSpellCheckCast` can reject active cast, not native passive aura or skill ownership | Classify active-cast denial as **reduced-fidelity experiment only**; test passives, bot autocasts and triggered spells |
 | R-26 | High | Global metadata manipulation applies beyond a Vanilla-stage owner; post-Vanilla Hunters must remain untouched | Reject cross-era data mutation, unsupported const-cast and global default spell SQL workarounds |
+| R-27 | High | Naxx Core NT1 queries **command issuer HUMAN** but pet gameplay belongs to the **actual Hunter owner** | Never copy issuer-based stage checks into generic Alt Bot/Random Bot pet policy |
+| R-28 | High | IP's GroupScript may synchronise bot progression to leader on joining, without changing bot level | Re-evaluate owner era on authoritative stage change; never wipe pet skills/ledger to transition |
+| R-29 | **Critical** | Legacy IP without exported public header cannot be safely understood from modern hidden quest fallback | No automatic Vanilla pet mutation until exact installed legacy reader validated |
+| R-30 | High | Effective `hasPassedProgression` honours IP `ProgressionLimit`; raw rewarded quests and `.ip get` may differ under cap | Test cap/era transitions; trust installed API semantics not one raw quest number |
+
 
 Evidence: [source-pinned lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md), [16-event data](../data/reference/public-core-pet-lifecycle-events.csv), [auto-grant feasibility verdict](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) and [16 candidate interceptions](../data/reference/auto-spell-interception-candidates.csv). All implementation verdicts remain **NOT PROVEN** until exact deployed source revision and staging tests.
 
