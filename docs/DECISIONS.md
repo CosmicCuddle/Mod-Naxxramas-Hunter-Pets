@@ -28,6 +28,9 @@
 | D-018 | OPEN | Exact effort/delivery after source audit. | 42–80 engineering days is an initial rough estimate, not a commitment. |
 | D-019 | AGREED | Treat repository as **both a detailed historical/technical blueprint and actionable developer roadmap**. | Every requirement links evidence, implementation package, risk, acceptance and approval; detail and provenance matter more than vague progress descriptions. |
 | D-020 | PROPOSED / SOURCE-CONFLICT | Charge Rank 4 appears in Classic Petopia but **no known tame-teaching source** is recorded. | Do not invent a source or mark obtainable without new evidence. |
+| D-021 | AGREED | Aim to restore **as much of the entire original Vanilla Hunter pet system as technically possible**. | Include gameplay, taming, ability families/ranks, unique beast properties, loyalty, TP, happiness, XP, stables, UI and compatible bots; don't shrink scope to a few headline pets. |
+| D-022 | PROPOSED | Use one coherent late-original-Vanilla gameplay ruleset as the first reference implementation; preserve early original variants as documented optional candidates. | Research all Vanilla patch changes rather than silently excluding or combining them; specific exception choices require owner approval. |
+| D-023 | AGREED | Prioritise **historical references and source-data quality before implementing mechanics**. | A comprehensive blueprint should distinguish original patch evidence, modern Classic reconstructions, core behaviour and actual 3.3.5 runtime proof. |
 
 ## Approval discipline
 
@@ -35,4 +38,4 @@ Update status only after an explicit owner decision or a documented reproducible
 
 ## Future editor handoff prompt
 
-> Continue the planning and (only if separately authorized) staged experimental development of `CosmicCuddle/Mod-Naxxramas-Hunter-Pets`. Read the root README and all `docs/*.md` first. Maintain strict isolation from AzerothCore, mod-playerbots, Individual Progression and Naxxramas Core. Confirm actual deployed versions and prove module-only feasibility before broad implementation. Do not assume unapproved D-007 through D-018 choices, merge, install or release. Preserve original Hunter gameplay and all Vanilla IP stages. Report evidence and blockers explicitly.
+> Continue the planning and (only if separately authorized) staged experimental development of `CosmicCuddle/Mod-Naxxramas-Hunter-Pets`. Read the root README and all `docs/*.md` first. Maintain strict isolation from AzerothCore, mod-playerbots, Individual Progression and Naxxramas Core. Confirm actual deployed versions and prove module-only feasibility before broad implementation. Do not assume proposed or open decisions are approved, merge, install or release. Preserve original Hunter gameplay and all Vanilla IP stages. Report evidence and blockers explicitly.
