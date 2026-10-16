@@ -111,6 +111,11 @@
 | ENG-35 | Pet passive aura before/after cast denial | No passively granted forbidden Vanilla aura (Stamina/Armor/Resistance/talent) applies despite active-cast denial; fail if leakage |
 | ENG-36 | Client packet/log order around summon and levelup | No unapproved transient WotLK `PetLearnedSpell`, `PetSpellInitialize`, or misleading action-bar/autocast without owner-approved compromise |
 | ENG-37 | Owner IP transitions with spell gating enabled and disabled | Vanilla-stage human/Alt/Random rules scoped correctly; **post-Vanilla Hunter, non-Hunter, wild NPC** unaffected by spell check or cleanup |
+| ENG-38 | Copy IP owner-aware pet rule pattern correctly | Resolve actual Owner Player and installed IP stage; restrict to real Hunter pets; preserve all Vanilla stages, non-Vanilla and other pet classes |
+| ENG-39 | Interaction with IP UnitScript pet scaling | No duplicate owner-era melee/spell/periodic damage/healing multiplier; original speed or bonuses remain controlled and testable |
+| ENG-40 | Historic IP HunterPetLevelFix assumption | Inspect installed config/SHA and check tame level+stable/relog; do not trust old setting merely because a historical issue describes it |
+| ENG-41 | IP OnPlayerSpellCast versus pet AllSpellScript casting | Show original IP Player-cast cancellation **cannot** stop Pet::learnSpell, and validate actual pet caster path separately |
+
 
 
 
