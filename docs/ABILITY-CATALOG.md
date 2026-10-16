@@ -55,6 +55,12 @@ The table lists all known Vanilla ranks by **minimum PET level**. It is **not** 
 
 [Classic Petopia](https://www.wow-petopia.com/classic/abilities.php) lists Charge 4 at pet level 36 for **17 TP**, but explicitly reports **no known training source**. The rank can exist in a ruleset without having a wild source that makes it learnable. This distinction must be preserved in the final creature→rank catalogue. **Do not invent a boar that teaches it.** See [evidence standards](RESEARCH-EVIDENCE-STANDARDS.md).
 
+### Critical trainer rank conflict: five school resistance Rank 5s
+
+The guide table and [vanilla-ability-ranks.csv](../data/reference/vanilla-ability-ranks.csv) currently include **Rank 5 (+140 at level 60 / 105 TP)** of Arcane, Fire, Frost, Nature and Shadow Resistance. [Petopia's own historical investigation](https://forums.wow-petopia.com/viewtopic.php?t=26093), [Warcraft Wiki Arcane](https://warcraft.wiki.gg/wiki/Arcane_Resistance_(pet_ability)) and [Frost](https://warcraft.wiki.gg/wiki/Frost_Resistance_(pet_ability)) indicate **only four ranks were offered during original Vanilla**. All five Rank 5 rows are now flagged `DISPUTED_LATE_VANILLA_TRAINER_OFFER_BLOCK_DEFAULT`. Do not enable merely because the 2705x spell-chain IDs exist. **47 trainer ranks are the current provisional late-Vanilla candidate baseline**; this is not an approved owner decision or a completed 1.12 DBC audit.
+
+See [full 52-rank trainer analysis](COMPLETE-TRAINER-RANK-RESEARCH.md), [candidate IDs](../data/reference/vanilla-trainer-spell-id-candidates.csv) and [original-vs-deployed DBC protocol](ORIGINAL-DBC-AND-DEPLOYED-COMPARISON.md).
+
 ### Selected reference costs, good test fixtures
 
 | Skill | Rank | Pet level | TP cost | Source |
