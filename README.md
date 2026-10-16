@@ -34,6 +34,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Technical feasibility](docs/TECHNICAL-FEASIBILITY.md) — what source proves, what remains unproven module-only.
 - [Engine source audit](docs/ENGINE-SOURCE-AUDIT.md) — AzerothCore hooks and classic CMaNGOS comparison references.
 - [Source-pinned pet lifecycle and hook ordering](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) — exact public source file blobs/lines for tame, async load, auto-learn, level sync, spell-hit and native save.
+- [IP Hunter-pet precedent and compatibility audit](docs/IP-HUNTER-PET-PRECEDENT-AUDIT.md) — **IP's owner-stage-aware pet damage/XP hooks are reusable as a design pattern**, but its Player spell cancellation is not a pet auto-learn veto; historical HunterPetLevelFix complaint documented.
 - [Auto spell-learning module-only feasibility decision](docs/AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) — exact global DBC-derived grant path, scope-aware cast-denial candidate, and why neither late reconciliation nor a global override proves full Vanilla fidelity.
 - [WP-03 disposable staging protocol](docs/WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md) — permission-gated, backup-first, logging-only sequence then approval-specific experiments, packet-state/crash controls and GO/NO-GO criteria.
 - [16-event lifecycle trace (CSV)](data/reference/public-core-pet-lifecycle-events.csv) — source, stage ordering, event risks, API hook and expected test.
