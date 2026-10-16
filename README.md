@@ -108,6 +108,7 @@ The [source-pinned pet lifecycle audit](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.m
 - [Historical source catalogue issue #2](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/2) — fully index original tame sources, verify client/creature IDs and resolve historical conflicts.
 - [Pet spell-ID and effects research issue #3](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/3) — verify all 111 ranks, original/3.3.5 client compatibility and cross-era spell conflicts.
 - [WP-03 auto-spell module-only research issue #4](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/4) — strict Vanilla training vs core auto ranks, candidate spell-cast guard, client packet/passive test and staged GO/NO-GO.
+- [IP installed-stage and bot group-sync research issue #5](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/5) — verify actual installed IP owner era API and protect Alt Bot/Random Bot stage changes.
 - **None of these research issues grants approval to implement code or change the server.**
 - The repository deliberately combines a **historical+technical blueprint** with a **dependency-ordered work programme**. Every research fact is tied to a work package, QA test and open/approved decision where possible.
 
