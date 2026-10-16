@@ -144,6 +144,18 @@
 | ENG-68 | Great Stamina identical name with different spell IDs 4187 vs 61686 | Classic trained +3 flat stat never silently replaced by 3.3.5 pet talent +4% Stamina; no doubled HP/stat benefits |
 | ENG-69 | Screech Rank 5 expansion spell 27051 | Never map post-Vanilla 27051 to original Vanilla Screech Rank 4; era and rank provenance checked |
 | ENG-70 | Public reference proves a 3.3.5 spell has different effects | Keep native family level-up/default/passive grant flags **UNVERIFIED** until installed 3.3.5 binary+override family map and runtime tame/load are checked |
+| ENG-71 | Screech Rank 4 per-target damage, AP debuff, duration | Check exact deployed effect indexes and hook compatibility; no wrong-actor aura or IP double scaling |
+| ENG-72 | Screech and Furious Howl native Focus/cooldown | No fake post-cast Focus deduction, no stale client cost/cooldown; restore only with fully proven supported mechanism |
+| ENG-73 | Furious Howl Vanilla party next-hit proc versus WotLK AP | A true next-hit +damage proc for party targets proven if attainable; no simultaneous unintended WotLK AP aura |
+| ENG-74 | Existing Furious Howl native `-24604` script and Call of the Wild 53434 | Active script binding and filter checked before any module code; post-Vanilla pet+owner targets remain intact; no reliance on unproven filter ordering |
+| ENG-75 | Lightning Breath Rank 5 hit damage hook versus IP scaling | Original Nature damage range and target behavior verified across crit/miss/resistance and Vanilla subtiers, no doubled IP output modifiers |
+| ENG-76 | Lightning Breath Focus/cooldown client/server checks | Resource availability checked before cast and 3.3.5 cooldown/tooltip aligned; no post-cast penalty pretending to be pre-cast cost |
+| ENG-77 | Son of Hakkar Rank 6 distinct from Rank 5 | Only valid tame-source learning enables rank; installed 335 spell/effect and 1.12 candidate independently verified |
+| ENG-78 | Growl `SPELL_EFFECT_THREAT` source with effect-hook override | Verify `SetEffectValue` happens before actual ThreatMgr AddThreat for correct effect, no generic damage setter misuse, no false ranks |
+| ENG-79 | Great Stamina original flat aura versus WotLK percentage talent | Aura effect type, actual Stamina and maximum HP verified after train/stable/reload without modifying WotLK talent or duplicating IP effects |
+| ENG-80 | Client tooltip, Focus and cooldown mismatch despite server effect correction | Partial numeric script success NOT accepted as complete Vanilla spell; document any unfixable display issue and seek explicit owner decision |
+| ENG-81 | Restored spell effects without strict native spell eligibility | Do not claim original Beast Training complete if unearned native WotLK spell is still learned, applied as passive or sent to client |
+
 
 
 
