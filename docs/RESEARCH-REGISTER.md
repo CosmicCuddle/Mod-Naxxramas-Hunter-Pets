@@ -1,0 +1,67 @@
+# Research register and historical data sources
+
+**Status:** Open evidence log. Do not treat this list as an implemented database, or as proof that a specific Vanilla patch's data exists in AzerothCore 3.3.5a.
+
+## Source hierarchy
+
+1. Historical Vanilla 1.12 patch data or credible original research, verified against independently documented examples.
+2. Classic Era archival/recreation sources, with version differences explicitly identified.
+3. Current AzerothCore C++ and SQL, for **implementation behaviour**, not presumed Vanilla authenticity.
+4. Observations from the owner's actual server and client test build (record SHA/config), with repeatable steps.
+
+Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK abilities into one unsourced table. Each row must specify *era / patch* and *confidence*.
+
+## Researched starting references
+
+- Classic Petopia — abilities and where to tame ranks: https://www.wow-petopia.com/classic/abilities.php
+- Classic Petopia — learning from tamed beasts, trainer skills, four-active cap and training point formula: https://www.wow-petopia.com/classic/training.php
+- Classic Petopia — version differences and families: https://www.wow-petopia.com/classic/differences.php
+- Wowhead — Classic Hunter pets / specific pet use cases: https://www.wowhead.com/classic/guide/classic-wow-hunter-pets
+- Warcraft Wiki — training points removed in patch 3.0.2: https://warcraft.wiki.gg/wiki/Training_point
+- AzerothCore `Pet.cpp` for normalised 3.3.5a attack speed, happiness and auto-learning: https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Entities/Pet/Pet.cpp
+- AzerothCore PetScript hook definitions: https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Scripting/ScriptDefines/PetScript.h
+- Individual Progression upstream: https://github.com/ZhengPeiRu21/mod-individual-progression
+- IP reported `HunterPetLevelFix` issue (not proof about installed version): https://github.com/ZhengPeiRu21/mod-individual-progression/issues/423
+- Naxxramas Core roadmap: https://github.com/CosmicCuddle/Mod-Naxxramas-Core/blob/main/ROADMAP.md
+
+## Research datasets required before feature completeness can be claimed
+
+| Dataset | Minimum columns / validation |
+|---|---|
+| Creature taming source | creature entry, name, map/location, Vanilla phase availability, family, tamable? level, source and confidence |
+| Wild-known skills | creature entry, spell ID, canonical ability, rank, learns-by-use trigger, source and patch |
+| Full skill ranks | canonical ability, rank, exact spell ID in **deployed** DBC, level requirement, TP cost, family masks, source |
+| Trainer skills | trainer NPC(s), skill/rank, level requirement, money cost, prerequisite/source |
+| Pet family | family ID, diet, armour/HP/damage profile, base abilities, unique behaviours, source |
+| Exceptional pets | creature entry, attack interval, damage normalization, special school/behaviour, patch boundaries |
+| Loyalty/happiness | rank thresholds, time/XP logic, food gains, decay, damage modifiers, abandonment rules |
+| Pet XP/stables | tame level handling, XP thresholds, level restrictions, available stable capacity and UI |
+| Interface/protocol | what 3.3.5 client can display without DBC or executable patch; addon feasibility |
+| Save/reload | native table names/keys and script hook lifecycle on deployed branch |
+
+Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
+
+## Known examples for verification, not yet authoritative implementation data
+
+- **Son of Hakkar:** Lightning Breath Rank 6 as a tame-discovered rank, transferable to eligible Wind Serpents after Hunter learning.
+- **Broken Tooth:** 1.0-second historical melee attack cadence; verify damage-per-swing scaling, PvP pushback and template ID.
+- **Lupos:** early Vanilla Shadow-damage behaviour removed before late Vanilla; only implement if owner approves an early-patch exception.
+- **Furious Howl / wolves:** investigate whether and why specific tames matter for top-rank acquisition.
+- **Rare vs elite:** do not conflate spawn rarity, elite creature combat stats and tamed-pet performance.
+
+## Open research questions — must answer before broad coding
+
+1. Which IP branch is actually installed, and does it contain/enable Hunter-specific pet changes today?
+2. Can module-only hooks reliably suppress automatic pet skill granting **at all stages** (taming, level, load, talent reset, pet save)?
+3. Does 3.3.5 retain all original skills and rank spell data, or are **DBC/server+client** additions required?
+4. Can the original pet's attack speed be restored with correct DPS normalization under all damage/haste buffs?
+5. Will classic *four-active-skill* rules conflict with mandatory built-in WotLK pet actions?
+6. How is the owner-wide known ability catalogue persisted separately from per-pet spells?
+7. What transitions will affect existing pets if the owner later unlocks TBC?
+8. How will Random bots and Alt Bots legally acquire usable Vanilla pet skills without bypassing the Hunter's intended gameplay?
+9. Will classic stable limits or a classic-looking Beast Training window be achievable without client work? What compromises are acceptable?
+10. How do happiness, pet talent points and source-IP levelling already interact with Naxx Core's bot consumables?
+
+## Provenance convention
+
+Use a CSV or Markdown table, with `patch_reference`, `source_url`, `checked_on`, `evidence_type`, `confidence`, `deployed_spell_id`, `verified_in_game` columns. Never silently resolve conflicting historical sources by choosing the most convenient result.
