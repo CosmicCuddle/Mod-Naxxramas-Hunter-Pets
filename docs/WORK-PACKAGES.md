@@ -53,11 +53,13 @@ This file converts the [unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROA
 
 ## WP-03: WotLK auto-spell and client-feasibility GO/NO-GO
 
-**Current:** PLANNED. **Type:** research then permission-gated experimental spike. **Dependencies:** WP-00.
+**Current:** SOURCE RESEARCH IN PROGRESS; **no C++ implementation or staging test approved or run**. **Type:** research then permission-gated experimental spike. **Dependencies:** WP-00.
 
 **Core question:** `InitLevelupSpellsForLevel` unconditionally teaches family/default ranks on several paths. **Current public PetScript has no generic learn-veto and no proven after-native-async-spells-loaded hook**; OnPetAddToWorld is early on an existing pet. Explore and prove a proper module-only event bridge, not a patch that silently strips spells whenever convenient. Can all automatic WotLK skill grants be prevented **only inside module APIs**? Are pet talent trees and old abilities accessible in the 3.3.5 client?
 
-**Protocol:** instrument controlled test (only after approval), reproduce level-up, initial tame, logon, summon, stable, pet respec, client spell packet/action bar update, server restart. Document every automatic grant path and safe interception order. Compare exact PetScript hooks, not only their names.
+**Evidence from current public core:** [Auto-spell decision](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md), [16 option matrix](../data/reference/auto-spell-interception-candidates.csv). `SpellMgr::LoadPetLevelupSpellMap` uses **global** 3.3.5 DBC family skill lines; `Pet::learnSpell` directly grants ranks. `OnSpellCheckCast` offers cast denial, **not** a veto of learning/passives/packets. `isBeingLoaded` becomes false after the original spellbook packet on reload. No strict module-only solution demonstrated.
+
+**Protocol:** [Full WP-03 staging protocol](WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md); instrument controlled test (only after approval), reproduce level-up, initial tame, logon, summon, stable, pet respec, client spell packet/action bar update, server restart. Document every automatic grant path and safe interception order. Compare exact PetScript hooks, not only their names.
 
 **Required exit:** detailed GO/NO-GO with reproducible evidence for *all* paths. Merely deleting a free spell once is **not** a pass. If impossible, document exact architectural blocker and offer truthful reduced project scope; **do not alter AzerothCore**.
 
