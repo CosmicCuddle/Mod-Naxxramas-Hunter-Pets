@@ -2,7 +2,7 @@
 
 **Status:** Detailed research and implementation-planning document. **No feature is implemented or approved for development.**
 **Last drafted:** 2026-10-16
-**Scope:** All original Vanilla Hunter-pet systems throughout *every* Vanilla Individual Progression stage.
+**Scope:** Aim to restore **as much of the whole original Vanilla Hunter-pet system as is module-only feasible**, active throughout *every* Vanilla Individual Progression stage. Research pre-1.12 variants too; no automatic mixing or enabling historical exceptions.
 **Integration:** Standalone experimental module first; future Mod-Naxxramas-Core integration only by separate approval.
 
 ## Why this document exists
@@ -33,7 +33,7 @@ No step can be inferred from the following one. A sourced Classic-era rule does 
 
 Three independent dimensions must be tracked for **every** feature:
 
-1. **Historical fidelity:** exact late-Vanilla behaviour, known patch ambiguity, ranked sources. Example: original attack speed, ranks, family restrictions, Trainer vs tame-acquired source.
+1. **Historical fidelity:** all known original Vanilla features, late-Vanilla baseline candidates, earlier patch variants, known patch ambiguity and ranked sources. Example: original attack speed, ranks, family restrictions, Trainer vs tame-acquired source.
 2. **Technical fidelity:** can the 3.3.5 client, AzerothCore module system, existing DBC and native pet persistence correctly reproduce the gameplay **without modifying upstream source**?
 3. **Operational fidelity:** does it work through login/logout, stabling, XP, combat, concurrent access, IP stages and bot use **without data loss**, with monitoring and rollback?
 
