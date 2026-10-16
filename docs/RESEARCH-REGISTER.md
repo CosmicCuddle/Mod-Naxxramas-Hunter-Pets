@@ -41,6 +41,13 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## Spell-ID research progress
+
+- [59 rank-by-rank wild spell candidates](../data/reference/vanilla-wild-spell-id-candidates.csv) were assembled as an **independent technical cross-check**, drawing from the CMaNGOS Classic Playerbot family mapping with Petopia as rank-level reference. All remain **unverified against original 1.12 and deployed 3.3.5 DBC**.
+- [Spell-ID and effect audit](SPELL-ID-AND-EFFECT-RESEARCH.md): **eight** ability rank-level mismatches in the bot code; Screech 4 has two candidate IDs, one of which (**27051**) is a confirmed out-of-era Screech variant. Do not use this ID as Vanilla Rank 4.
+- [Trainer spell identity comparison](TRAINER-SPELL-IDENTITY-REFERENCE.md): three independently sourced examples from **52** trainer rank records, including the flat Classic Great Stamina versus percentage WotLK effect. Trainer wrapper and pet-cast spell may use distinct IDs.
+- No 3.3.5 runtime/client spell assets have been inspected; **ID candidates are not implementation mappings**.
+
 ## Creature-to-rank research progress
 
 - [Tame-source atlas](TAME-ABILITY-SOURCE-ATLAS.md): **141** curated Classic Petopia beast/ability/rank reference rows. Coverage: **57** of 59 wild-rank combinations with examples; **two** with no known wild source. Candidate NPC IDs only for six named beasts; no deployed AC/IP/client validation.
