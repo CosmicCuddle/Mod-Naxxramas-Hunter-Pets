@@ -38,6 +38,9 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Installed IP read-only MobaXterm inventory](docs/READ-ONLY-INSTALLED-IP-INVENTORY.md) — no git pull, no SQL, no config changes; identify exact running/source versions and cross-check IP stage.
 - [22-scenario IP Hunter-pet acceptance matrix](data/reference/ip-pet-owner-era-acceptance-matrix.csv) — all Vanilla stages, TBC/WotLK, Alt/Random Bots, group sync and capped XP.
 - [IP Hunter-pet precedent and compatibility audit](docs/IP-HUNTER-PET-PRECEDENT-AUDIT.md) — **IP's owner-stage-aware pet damage/XP hooks are reusable as a design pattern**, but its Player spell cancellation is not a pet auto-learn veto; historical HunterPetLevelFix complaint documented.
+- [WotLK three-path auto-grant DBC audit](docs/WOTLK-AUTO-GRANT-DBC-COMPARISON.md) — exact family level-up, creature-specific defaults and family passive source rules; why public base SQL has no actual spell data.
+- [21-ability Vanilla vs WotLK comparison](data/reference/wotlk-versus-vanilla-ability-audit.csv) — **111** candidate rank records grouped by Vanilla ability, each with three separate unverified 3.3.5 grant paths.
+- [17-family WotLK grant audit](data/reference/wotlk-family-auto-grant-audit.csv) — per-family skill lines, template defaults and generated passive spell audit slots.
 - [Pet grant, packet and database safety audit](docs/PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) — auto passives, outgoing spellbook packet hook, global invalid-spell cleanup and recycled pet numbers.
 - [Ten WP-03 pet spell safety tests](data/reference/wp03-pet-spell-safety-tests.csv) — explicit staged packet/passive/save/rank regressions.
 - [Auto spell-learning module-only feasibility decision](docs/AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) — exact global DBC-derived grant path, scope-aware cast-denial candidate, and why neither late reconciliation nor a global override proves full Vanilla fidelity.
@@ -80,7 +83,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [97-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [104-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
 - [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 *listed* trainer ranks (**five resistance Rank 5s are historically disputed**); all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — rank-count and spell-ID mismatches, out-of-era spell variants, original vs Classic bugs, and data reuse restrictions.
