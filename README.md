@@ -63,14 +63,17 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [32-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [38-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
 - [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 trainer ranks; all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — independent count mismatch, original vs Classic bugs, and data reuse restrictions.
+- [Read-only world/character DB audit](docs/READ-ONLY-SERVER-DATA-AUDIT.md) — safe template/spawn/schema verification procedure before any future implementation.
 
 ## Research coordination
 
-- [Stage 0 read-only research and module-only feasibility tracking issue](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/1) — living checklist and developer reports. **This is not approval to implement code or change the server.**
+- [Stage 0 read-only feasibility issue #1](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/1) — module-only hooks and actual core audit.
+- [Historical source catalogue issue #2](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/2) — fully index original tame sources, verify client/creature IDs and resolve historical conflicts.
+- **Neither issue grants approval to implement code or change the server.**
 - The repository deliberately combines a **historical+technical blueprint** with a **dependency-ordered work programme**. Every research fact is tied to a work package, QA test and open/approved decision where possible.
 
 ## Known architecture obstacles — don't overpromise
