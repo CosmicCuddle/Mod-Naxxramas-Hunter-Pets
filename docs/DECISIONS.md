@@ -31,6 +31,7 @@
 | D-021 | AGREED | Aim to restore **as much of the entire original Vanilla Hunter pet system as technically possible**. | Include gameplay, taming, ability families/ranks, unique beast properties, loyalty, TP, happiness, XP, stables, UI and compatible bots; don't shrink scope to a few headline pets. |
 | D-022 | PROPOSED | Use one coherent late-original-Vanilla gameplay ruleset as the first reference implementation; preserve early original variants as documented optional candidates. | Research all Vanilla patch changes rather than silently excluding or combining them; specific exception choices require owner approval. |
 | D-023 | AGREED | Prioritise **historical references and source-data quality before implementing mechanics**. | A comprehensive blueprint should distinguish original patch evidence, modern Classic reconstructions, core behaviour and actual 3.3.5 runtime proof. |
+| D-024 | PROPOSED / SOURCE-CONFLICT | Treat only **47 of 52** candidate trainer ranks as likely available in strict late-Vanilla; **five school resistance Rank 5s** remain blocked pending 1.12 DBC and actual trainer-offering proof. | Petopia's maintainer and multiple independent historical summaries distinguish four original ranks vs five BC; a CMaNGOS spell-chain row does not prove original trainability. Do not remove source records, claim full proof or auto-train without an explicit decision. |
 
 ## Approval discipline
 
