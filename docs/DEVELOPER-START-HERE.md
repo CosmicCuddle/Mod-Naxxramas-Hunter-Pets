@@ -8,14 +8,14 @@ Rebuild the complete late-Vanilla Hunter pet experience for every character stil
 
 ## Read in this exact order
 
-1. [Master blueprint](BLUEPRINT.md) — authoritative objectives and invariants.
+1. [Unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROADMAP.md) — integrated vision, engineering work packages, evidence and approval gates; then [Master Vanilla blueprint](BLUEPRINT.md) — detailed gameplay invariants.
 2. [Project handover](PROJECT-HANDOVER.md) — agreed user decisions and architectural boundaries.
 3. [Decision log](DECISIONS.md) — open questions must stay open.
 4. [Engine audit](ENGINE-SOURCE-AUDIT.md) and [risk gates](RISK-AND-FEASIBILITY-GATES.md) — first check if it's actually possible module-only.
 5. [Families](VANILLA-FAMILY-REFERENCE.md), [Ability catalogue](ABILITY-CATALOG.md) and [special beasts](RARE-AND-SPECIAL-BEASTS.md) — candidate historical data.
 6. [State machines](STATE-MACHINES.md), [persistence](PERSISTENCE-AND-API.md), [IP/Bot interoperability](IP-PLAYERBOTS-INTEROPERABILITY.md), [player UI](PLAYER-EXPERIENCE-AND-UI.md).
-7. [QA matrix](QA-ACCEPTANCE-MATRIX.md), [backup/rollback](TEST-AND-ROLLBACK.md), [roadmap](IMPLEMENTATION-ROADMAP.md), [bibliography](REFERENCE-BIBLIOGRAPHY.md) and [research register](RESEARCH-REGISTER.md).
-8. Machine-readable reference files under `data/reference/` are **research-only** and missing deployed spell IDs/NPC entries. Never feed them directly to runtime.
+7. [Work packages](WORK-PACKAGES.md), [QA matrix](QA-ACCEPTANCE-MATRIX.md), [backup/rollback](TEST-AND-ROLLBACK.md), [roadmap](IMPLEMENTATION-ROADMAP.md), [bibliography](REFERENCE-BIBLIOGRAPHY.md), [research register](RESEARCH-REGISTER.md) and [historical evidence standards](RESEARCH-EVIDENCE-STANDARDS.md).
+8. Machine-readable reference files under `data/reference/` include a 54-requirement traceability matrix and **research-only** family, special-beast and ability-rank datasets. Costs are candidates sourced from modern Classic guides; deployed spell IDs/NPC entries and original 1.12 confirmation are missing. Never feed research files directly to runtime.
 
 ## First assignment — Stage 0 RESEARCH ONLY
 
