@@ -48,6 +48,15 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
 - [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
 
+## New native owner-spellmod approach — Focus cost and cooldown
+
+- [Source-pinned cost/cooldown research](PET-OWNER-SPELLMOD-FOCUS-COOLDOWN-AUDIT.md) confirms **actual public native** `SpellInfo::CalcPowerCost` applies a pet's **owner Player `SPELLMOD_COST`** and `Creature::AddSpellCooldown` similarly applies **owner `SPELLMOD_COOLDOWN`** to spell **and category** recovery. `PetHandler` and `PetAI` both call that creature cooldown path.
+- **Important reversal of prior assumption:** no direct SpellScript SetFocusCost exists, but the **owner spell-modifier system may be an era-local module-only alternative** if a safe valid aura host, spell-family mask/strict exact-spell matching and client behaviour can be proven. This is a **promising mechanism**, not an implemented solution.
+- [16 proof cases](../data/reference/pet-owner-spellmod-feasibility-tests.csv) cover Focus prechecks, category/unsigned zero cooldown, owner aura registration, Alt/Random Bot IP transitions, false GlobalScript match and non-Hunter controls.
+- `OnIsAffectedBySpellModCheck` returning **false** is particularly dangerous: the `SpellInfo` matching path interprets it as **force apply modifier**, regardless of normal family mask. It does not accept a caster argument. Always require module aura provenance, exact spell and lifetime filtering before considering this.
+- [Serial targeting source](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Spells/Spell.cpp) shows successive Furious Howl area target scripts mutate **one shared list**, so simply adding a new `OnObjectAreaTargetSelect` filter cannot restore targets removed by the native `-24604` filter; preserving valid target search and order remains unresolved.
+- **Original pet spell auto-learning, native 3.3.5 client tooltips and installed DBC are still NOT PROVEN**. Research index now includes **132** entries.
+
 ## Spell effect module-only hook feasibility — five priority abilities
 
 - [Source-pinned spell-effect feasibility](VANILLA-PET-SPELL-EFFECT-HOOK-FEASIBILITY.md) examines current public `SpellScript::SetHitDamage`, `SetEffectValue`, `AuraScript::DoEffectCalcAmount`, `AllSpellScript::OnCalcMaxDuration`, and `OnObjectAreaTargetSelect` against *specific* Vanilla mechanics. [18-case research matrix](../data/reference/vanilla-spell-effect-hook-feasibility.csv) records candidates, blockers, client/server proof and future stage tests separately.
