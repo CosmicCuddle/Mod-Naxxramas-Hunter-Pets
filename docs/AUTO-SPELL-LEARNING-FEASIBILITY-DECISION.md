@@ -83,6 +83,12 @@ PlayerScript::OnPlayerAfterUpdate (potentially)
 
 **Consequence:** Candidate *ability-use gate + reconciliation* may be a **reduced-fidelity opt-in mode** if safe under strict negative tests. Do not present it as having brought back authentic Vanilla Beast Training, or silently ship it without explicit owner trade-off approval.
 
+## Additional source confirmation: packet hook and data integrity aren't a workaround
+
+A deeper current public source audit found [ServerScript::CanPacketSend](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Scripting/ScriptDefines/ServerScript.h), which may return false to suppress a **whole outgoing packet**, and `OnPacketSent` for **read-only observation**. [WorldSession::SendPacket](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Server/WorldSession.cpp) calls `OnPacketSent` before the socket check, then `CanPacketSend`, then socket send. The interface does not provide a safe field-level spellbook rewrite. **Dropping all pet spellbook packets cannot prevent actual core rank learning, passive effects or server action-bar changes**; not a strict solution.
+
+Also, [Pet::addSpell](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Entities/Pet/Pet.cpp) casts a passive immediately, and when loading a nonexistent saved spell it triggers `CHAR_DEL_INVALID_PET_SPELL`: `DELETE FROM pet_spell WHERE spell = ?` (global by spell, not per pet). Do not put unverified original IDs into native pet spells or treat source-ID mapping as harmless; **backups before any future staging experiment** are essential. See [source-pinned packet/DB audit](PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) and [10 safety QA test cases](../data/reference/wp03-pet-spell-safety-tests.csv).
+
 ## Alternatives compared
 
 | Candidate | Strict fidelity | Era-local | Module-only | Finding |
