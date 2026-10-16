@@ -90,6 +90,8 @@ The original [1.9 patch notes archive](https://warcraft.wiki.gg/wiki/Patch_1.9.0
 5. **Talent/ability interaction**, WotLK pet talent replacement, Hunter Beast Mastery talent, fixed passive inheritance, IP power scaling, original raid party effects and Playerbot AI choices.
 6. **Implementation feasibility & tests**, exact deployed AzerothCore extension points, staged read-only schema audit, module-only GO/NO-GO, rollback safety and support for every Vanilla IP progression stage.
 
-See the [unified roadmap](UNIFIED-BLUEPRINT-AND-ROADMAP.md), [evidence standards](RESEARCH-EVIDENCE-STANDARDS.md) and [traceability dataset](../data/reference/requirement-traceability.csv).
+Our first [tame-source atlas](TAME-ABILITY-SOURCE-ATLAS.md) contains **141** independently transcribed candidate beast→rank relationships from Classic Petopia, covering all **57** currently sourced wild ranks in the 111-row reference catalogue. Two additional wild ranks have no known tame source. The full original 1.12 source catalog and 3.3.5 mappings are still unverified.
+
+See the [unified roadmap](UNIFIED-BLUEPRINT-AND-ROADMAP.md), [evidence standards](RESEARCH-EVIDENCE-STANDARDS.md), [source conflicts/licensing](REFERENCE-SOURCE-CONFLICTS.md), [read-only server audit](READ-ONLY-SERVER-DATA-AUDIT.md) and [traceability dataset](../data/reference/requirement-traceability.csv).
 
 **No gameplay code has been implemented or tested.** The next objective is completeness and reliability of evidence, rather than assuming a large reference library automatically equals a working Hunter module.
