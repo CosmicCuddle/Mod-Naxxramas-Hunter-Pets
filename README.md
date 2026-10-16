@@ -12,10 +12,11 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 **Locked project direction:** Vanilla Hunter pet mechanics run across **every Vanilla Individual Progression stage**, up to the actual TBC-entry milestone. Design of later TBC/WotLK pet systems is deferred. Source implementation must remain inside **this standalone module**, with **no edits** to AzerothCore, Individual Progression, Playerbots or Mod-Naxxramas-Core. A later integration into Naxx Core requires separate owner approval and migration tests.
 
-## Two essential starting documents
+## Three essential starting documents
 
-1. **[DEVELOPER START HERE](docs/DEVELOPER-START-HERE.md)** — instructions and first read-only technical assignment for a future module editor.
-2. **[MASTER BLUEPRINT](docs/BLUEPRINT.md)** — full design vision, gameplay invariants, version boundaries and hard feasibility conditions.
+1. **[UNIFIED BLUEPRINT + ROADMAP](docs/UNIFIED-BLUEPRINT-AND-ROADMAP.md)** — the complete, traceable project connecting historical requirements, engineering work, tests and approval gates.
+2. **[DEVELOPER START HERE](docs/DEVELOPER-START-HERE.md)** — reading order and first read-only technical investigation.
+3. **[MASTER VANILLA BLUEPRINT](docs/BLUEPRINT.md)** — detailed historical gameplay principles and engineering invariants.
 
 ## Complete blueprint documentation
 
@@ -36,11 +37,13 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Risk register and hard feasibility gates](docs/RISK-AND-FEASIBILITY-GATES.md) — what must be proven before full development.
 - [QA and acceptance matrix](docs/QA-ACCEPTANCE-MATRIX.md) — reproducible test IDs across the full lifecycle.
 - [Backup and rollback plan](docs/TEST-AND-ROLLBACK.md) — preexisting pets, character DB, installed DBC and safe recovery.
-- [Implementation roadmap and estimate](docs/IMPLEMENTATION-ROADMAP.md) — Stage 0 audit, small prototypes, full Vanilla data, integration and 42–80 approximate developer-days.
+- [Implementation roadmap and estimate](docs/IMPLEMENTATION-ROADMAP.md) — Stage 0 audit, small prototypes, full Vanilla data, integration and initial 42–80 approximate developer-days.
+- [Actionable work packages](docs/WORK-PACKAGES.md) — WP-00 through WP-10 with dependencies, deliverables, acceptance and no-go conditions.
 
 ### Research and decision provenance
 - [Annotated historical/reference bibliography](docs/REFERENCE-BIBLIOGRAPHY.md) — Classic Petopia, Warcraft Wiki, Wowhead, CMaNGOS Classic, AzerothCore and comparison material.
 - [Research register and missing verification tasks](docs/RESEARCH-REGISTER.md).
+- [Research evidence standards](docs/RESEARCH-EVIDENCE-STANDARDS.md) — distinguish original Vanilla, modern Classic, CMaNGOS and deployed AzerothCore; document uncertain ranks such as Charge 4.
 - [Agreed / proposed / open decisions](docs/DECISIONS.md).
 
 ## Machine-readable, **research-only** reference tables
@@ -48,8 +51,9 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 | File | Contents | Readiness |
 |---|---|---|
 | [`data/reference/vanilla-families.csv`](data/reference/vanilla-families.csv) | **17** named families; original role, stat modifiers, diets, allowed active abilities and citations | Candidate design data, not deployed family IDs |
-| [`data/reference/vanilla-ability-ranks.csv`](data/reference/vanilla-ability-ranks.csv) | **111** entries across 21 Classic Petopia abilities: rank/level and many cited TP costs | Missing several costs and **all** installed server/client spell IDs |
+| [`data/reference/vanilla-ability-ranks.csv`](data/reference/vanilla-ability-ranks.csv) | **111** candidate Classic ranks with level and Petopia training cost | All costs now sourced from Petopia; **original 1.12 verification and installed server/client spell IDs still missing** |
 | [`data/reference/vanilla-special-beasts.csv`](data/reference/vanilla-special-beasts.csv) | **13** high-value beast examples and documented historic traits | Names/speeds/skills are references; deployed creature IDs still unverified |
+| [`data/reference/requirement-traceability.csv`](data/reference/requirement-traceability.csv) | **54** requirement links joining historical sources → developer WP → acceptance QA → decision | All implementation statuses NOT_STARTED, feasibility NOT_PROVEN |
 
 **Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
 
