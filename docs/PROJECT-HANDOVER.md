@@ -6,6 +6,8 @@
 **Target server:** AzerothCore WotLK 3.3.5a, with Individual Progression (IP), mod-playerbots, and Mod-Naxxramas-Core.
 **Prepared:** 16 October 2026
 
+**Modern IP planning priority (owner report, 16 October 2026):** The owner reports using the newest Individual Progression version. Prioritise modern hidden-quest stages (Vanilla 0–7; TBC 8–12; WotLK 13+) for the first module-only IP adapter. Exact compiled revision remains unverified and legacy handling is deferred rather than presumed necessary. No implementation is approved. See [IP adapter design](IP-STAGE-ADAPTER-DESIGN.md).
+
 ## Vision
 
 Recreate the *complete, meaningful Vanilla Hunter pet journey* on a WotLK 3.3.5a server: finding/taming beasts, learning their abilities through use, training abilities and ranks, loyalty, happiness, feeding, pet families and strengths, individual creature characteristics, pet levelling, stabling, and distinct PvE/PvP niches. Rare creatures should matter when they historically have a distinctive property or offer a sought-after skill—not receive invented blanket rarity bonuses.
