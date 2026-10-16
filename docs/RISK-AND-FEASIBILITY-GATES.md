@@ -21,6 +21,19 @@
 | R-15 | Medium | Rank guide catalogs disagree on count/data | Different Classic/TBC/WotLK guide versions | Treat reference datasets as candidates; verify in exact game patch |
 | R-16 | Medium | Client display is misleading or unusable | No original 1.12 Beast Training in 3.3.5 | Accessible gossip/addon proposal, explicit UI testing |
 
+## Source-pinned additional critical risks (October 2026)
+
+| Risk ID | Priority | Verified public-source fact | Mandatory action |
+|---|---|---|---|
+| R-17 | **Critical** | `OnPetAddToWorld` fires before asynchronous saved-spell restoration on existing pets, but after WotLK rank initialization on new tame | Never use one OnAdd reconciliation assumption for both lifecycle paths. Prove safe after-native-load synchronization without client-visible illegal ranks |
+| R-18 | **Critical** | `Unit::CreateTamedPetFrom` and `Pet::SynchronizeLevelWithOwner` each enforce owner-level-minus-five Hunter pet catch-up | Prove original wild-level and pet-XP rules can persist entirely module-only; do not edit AzerothCore or IP |
+| R-19 | **Critical** | Native pet `SavePetToDB` commits spell/cooldown data separately from main pet identity/slot | Module ledger must survive crash between commits with idempotent recoverability and owner-specific pet identity |
+| R-20 | High | `OnSpellCast` does not guarantee target hit for all spell types; `AfterHit` is per-effect/per-target | Test learn-by-use for hit, resisted/immune, missed, interrupted, projectile and non-target spells before granting Hunter knowledge |
+| R-21 | High | Hunter pet attack times overwritten before `OnInitStatsForLevel`, `UpdateAllStats` follows afterward | Prove correct source-specific swing, normalized damage and no reset on life cycle |
+| R-22 | High | Original creature template entry and unique native pet number are available in tame/save paths | Prove stable/relog persistence and source-creature identity rather than infer from model/family/name |
+
+Evidence: [source-pinned lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md), [16-event data](../data/reference/public-core-pet-lifecycle-events.csv). All implementation verdicts remain **NOT PROVEN** until exact deployed source revision and staging tests.
+
 ## Mandatory hard gates (stop on failed gate)
 
 **G0 – Read-only source truth.** Deployed commit hashes, current DB/DBC, IP/API, source hooks and owner-visible pet inventory recorded; backup/restore plan passed on staging.
