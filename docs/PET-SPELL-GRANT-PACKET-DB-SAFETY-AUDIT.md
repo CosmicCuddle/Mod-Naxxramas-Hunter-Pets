@@ -53,6 +53,21 @@ This is **a confirmed source-code behaviour, not an observed incident on the use
 - Use a backup of **characters** DB and a staging replica before ever testing a new spell mapping; test rollback integrity and verify no cross-pet deletion.
 - A harmless read-only SQL query is safe, but logging into a **staging realm that loads an invalid saved spell** can itself exercise the native cleanup path. Do not copy risky invalid test data to production.
 
+## Finding S-02B — CanUnlearn returning false can trigger an unwanted learn
+
+The public `Pet::InitLevelupSpellsForLevel` conditional (Pet.cpp lines 1924–1955) is structured as:
+
+```cpp
+if (spellRequirementAbovePetLevel && sScriptMgr->CanUnlearnSpellSet(pet, rankLevel, spellId))
+    unlearnSpell(spellId, true);
+else
+    learnSpell(spellId);
+```
+
+The default-spell branch follows the same pattern with `CanUnlearnSpellDefault`.
+
+Thus a module overriding `CanUnlearnSpellSet` or `CanUnlearnSpellDefault` to return **false** can force execution down the **`learnSpell` branch** even if the spell is too high for the pet's current level. **Never use these hooks as an auto-learn veto.** They are not harmless no-ops and can worsen the very violation we want to prevent. No experimental invocation was performed.
+
 ## Finding S-03 — outbound server packet interception exists, but is not spell-grant interception
 
 Public `ServerScript` exposes:
