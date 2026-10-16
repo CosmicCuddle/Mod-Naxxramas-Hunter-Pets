@@ -6,6 +6,8 @@
 **Target server:** AzerothCore WotLK 3.3.5a, with Individual Progression (IP), mod-playerbots, and Mod-Naxxramas-Core.
 **Prepared:** 16 October 2026
 
+**Read-only DBC data collection:** [MobaXterm and HeidiSQL checklist](READ-ONLY-WOTLK-PET-DBC-INPUT-CHECKLIST.md) explains precisely which loaded 3.3.5 file hashes and world override row counts are needed before claiming a spell ID is present; nothing executed on server.
+
 **New 3.3.5 source-data research:** [WotLK DBC auto-grant comparison](WOTLK-AUTO-GRANT-DBC-COMPARISON.md) identifies three spell generation paths, with [21-ability comparison](../data/reference/wotlk-versus-vanilla-ability-audit.csv) and [17-family audit](../data/reference/wotlk-family-auto-grant-audit.csv). Public AzerothCore base `creaturefamily_dbc`, `skilllineability_dbc` and `creaturespelldata_dbc` SQL have **zero inserted records**; actual 3.3.5 server DBC and local overrides remain UNVERIFIED, so do **not invent** the automatic spell IDs. No implementation approved.  
 
 **Modern IP planning priority (owner report, 16 October 2026):** The owner reports using the newest Individual Progression version. Prioritise modern hidden-quest stages (Vanilla 0–7; TBC 8–12; WotLK 13+) for the first module-only IP adapter. Exact compiled revision remains unverified and legacy handling is deferred rather than presumed necessary. No implementation is approved. See [IP adapter design](IP-STAGE-ADAPTER-DESIGN.md).
