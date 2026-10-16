@@ -24,12 +24,12 @@ After identifying the exact IP source directory, replace the example `/root/cosm
 CORE=/root/cosmic_core
 IP=/root/cosmic_core/modules/mod-individual-progression
 
-# Stop if paths aren't valid Git worktrees:
-test -d "$CORE/.git" || { echo "Core git directory needs checking"; exit 1; }
-git -C "$CORE" rev-parse --verify HEAD || exit 1
-git -C "$IP" rev-parse --verify HEAD || exit 1
+# Read-only Git revision checks (works with submodules/worktrees too).
+# If either fails, STOP here and check the directory; do not 'git pull'.
+git -C "$CORE" rev-parse --verify HEAD
+git -C "$IP" rev-parse --verify HEAD
 
-# Read-only details:
+# Continue only after the commands above show valid commit hashes:
 git -C "$CORE" branch --show-current
 git -C "$IP" branch --show-current
 git -C "$IP" status --short
