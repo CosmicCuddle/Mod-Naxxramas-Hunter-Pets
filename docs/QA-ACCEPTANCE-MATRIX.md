@@ -95,6 +95,13 @@
 | ENG-19 | Great Stamina after trained and untrained on same pet | Exact increase/decrease in **Stamina stat AND actual maximum health**, including recalculation after relog/stable; no duplicate WotLK % bonuses |
 | ENG-20 | Public `spell_ranks.sql` lacks a candidate ID | Do not conclude the DBC spell is absent; verify deployed **Spell.dbc**, server and client effect rows and core spell loading |
 | ENG-21 | Source version audit and provenance | Every enabled pet rank tied to SHA/version of original 1.12 data, deployed 3.3.5 DBC, exact per-Hunter IP rule and documented eligibility |
+| ENG-22 | OnPetAddToWorld versus asynchronously loaded native spells | Different order for new tame and reloaded pet, prove module does not reconcile until actual native spell load is complete |
+| ENG-23 | Fresh level-60 Hunter tames original level-20 beast | Preserve approved original Vanilla tame level (**20**, not WotLK owner−5 = **55**) including XP and pet save under a genuine module-only path |
+| ENG-24 | Stabled low-level Hunter pet resummoned at level 60 | No unwanted owner−5 level catchup; native save/XP remains consistent and IP controls do not regress |
+| ENG-25 | Crash after native aura/spell commit and before pet-info commit / module ledger commit | No lost valuable pet, duplicated rank, broken stable slot or silent TP divergence; reconciliation idempotent |
+| ENG-26 | Cast-trigger vs actual impact for wild rank discovery | Interrupted, immune, miss, projectile delayed hit, triggered and periodic effects do not accidentally grant a permanent Hunter-known rank |
+| ENG-27 | New tame source and pet identity after stable/relog | Native CreatureId, unique PetNumber and visual source persist, including rare model; no inference from nearby NPC |
+
 
 
 ## F. Loyalty, happiness, food and progression
