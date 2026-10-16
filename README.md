@@ -39,6 +39,8 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [22-scenario IP Hunter-pet acceptance matrix](data/reference/ip-pet-owner-era-acceptance-matrix.csv) — all Vanilla stages, TBC/WotLK, Alt/Random Bots, group sync and capped XP.
 - [IP Hunter-pet precedent and compatibility audit](docs/IP-HUNTER-PET-PRECEDENT-AUDIT.md) — **IP's owner-stage-aware pet damage/XP hooks are reusable as a design pattern**, but its Player spell cancellation is not a pet auto-learn veto; historical HunterPetLevelFix complaint documented.
 - [Read-only WotLK pet DBC inputs (MobaXterm + HeidiSQL)](docs/READ-ONLY-WOTLK-PET-DBC-INPUT-CHECKLIST.md) — hashes and optional world SQL override counts; no source/download, DB or client changes.
+- [Module-only spell-effect hook feasibility](docs/VANILLA-PET-SPELL-EFFECT-HOOK-FEASIBILITY.md) — verifies supported 3.3.5 SpellScript/AuraScript APIs and the native **Furious Howl -24604** pet+owner-only script binding.
+- [18 effect-level feasibility decisions](data/reference/vanilla-spell-effect-hook-feasibility.csv) — Screech, Furious Howl, Lightning Breath, Growl, Great Stamina, native auto-learn and client presentation.
 - [Five-ability public 3.3.5 effect conflict pilot](docs/PUBLIC-335-SPELL-EFFECT-CONFLICT-PILOT.md) — Screech, Furious Howl, Lightning Breath, Growl and Great Stamina; **six cases** of changed or different spell effects/era.
 - [Public Classic versus 3.3.5 conflict CSV](data/reference/public-335-spell-effect-conflicts.csv) — exact spell IDs and effect descriptions with separate installed-server/client proof fields.
 - [WotLK three-path auto-grant DBC audit](docs/WOTLK-AUTO-GRANT-DBC-COMPARISON.md) — exact family level-up, creature-specific defaults and family passive source rules; why public base SQL has no actual spell data.
@@ -86,7 +88,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [115-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [120-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
 - [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 *listed* trainer ranks (**five resistance Rank 5s are historically disputed**); all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — rank-count and spell-ID mismatches, out-of-era spell variants, original vs Classic bugs, and data reuse restrictions.
