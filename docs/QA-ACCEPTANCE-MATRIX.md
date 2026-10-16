@@ -130,6 +130,7 @@
 | ENG-54 | Native `addSpell` action bar, autocast and talent impact | Spell selection/rank upgrade does not silently reset pet autocast or native WotLK talent bookkeeping |
 | ENG-55 | `ServerScript::CanPacketSend` whole-packet interception | No pet spellbook packets dropped during logging-only probe; packet filtering not claimed to prevent learn/passive changes |
 | ENG-56 | `OnPacketSent` instrumentation | Logs represent attempted packets even when no socket or packet later vetoed, never mislabelled 'client received' |
+| ENG-57 | `CanUnlearnSpellSet`/`CanUnlearnSpellDefault` returns false for a too-high rank | The native **else** branch executes `learnSpell` and can grant an ineligible rank; these hooks are never used as learn prevention |
 
 
 
