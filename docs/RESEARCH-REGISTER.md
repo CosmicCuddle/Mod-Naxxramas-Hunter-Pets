@@ -48,6 +48,15 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
 - [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
 
+## Native pet spell database and outgoing packet safety — new source finding
+
+- [Full source-pinned spell grant/packet/DB safety audit](PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) explains native `Pet::addSpell` immediate passive casts, action-bar updates, rank upgrades, actual packet hook semantics and family passives regenerated on load.
+- [Ten WP-03 safety test cases](../data/reference/wp03-pet-spell-safety-tests.csv) now track whole-packet send veto hazards, attempted vs delivered packet observability, global invalid spell cleanup, prior rank relearning and recycled PetNumber.
+- **CRITICAL:** When `Pet::_LoadSpells` encounters a saved ID missing from SpellStore, `Pet::addSpell` executes `CHAR_DEL_INVALID_PET_SPELL`, whose public SQL is **`DELETE FROM pet_spell WHERE spell = ?`**—**no pet number restriction**. This can delete that ID's rows for **every** pet. Never insert guessed original/Classic spell IDs into native character DB; verify actual 3.3.5 server and client DBC and preserve characters DB backup before approved staged tests.
+- `ServerScript::CanPacketSend` can veto an **entire const packet**, not per-spell state. `OnPacketSent` is a pre-socket/pre-veto observer, so log output is not proof of successful delivery. Initial staging instrumentation must **never drop packets**.
+- Native `PETSPELL_FAMILY` passives aren't saved in regular pet spell table; they'll be recreated from family data. `removeSpell` with `learn_prev=true` may relearn a previous rank. Simple SQL removal or per-tick cleanup is not faithful manual training.
+- **No code, database or client changes performed**; public AzerothCore source may differ from user's compiled worldserver.
+
 ## WotLK automatic rank suppression feasibility — no strict module-only solution proven
 
 - [Auto-spell learning feasibility report](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) shows current public **SpellMgr** loads Hunter family rank maps from 3.3.5 `CreatureFamily` + `SkillLineAbility` DBC into **global** read-only-exposed lists; Pet::learnSpell grants direct without per-owner learning veto. Editing global data/shared maps is not an approved or era-safe module mechanism.
