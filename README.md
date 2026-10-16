@@ -57,6 +57,11 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 **Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
 
+## Research coordination
+
+- [Stage 0 read-only research and module-only feasibility tracking issue](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/1) — living checklist and developer reports. **This is not approval to implement code or change the server.**
+- The repository deliberately combines a **historical+technical blueprint** with a **dependency-ordered work programme**. Every research fact is tied to a work package, QA test and open/approved decision where possible.
+
 ## Known architecture obstacles — don't overpromise
 
 - **Top blocker:** 3.3.5 `Pet::InitLevelupSpellsForLevel` automatically teaches pet spells; no identified general module hook vetoes these grants. **Full authentic manual pet training may be impossible under strict module-only rules**. Prove a reliable, non-destructive approach before broad implementation.
