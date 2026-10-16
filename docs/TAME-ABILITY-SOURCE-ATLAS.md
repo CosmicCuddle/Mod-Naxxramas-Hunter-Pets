@@ -7,9 +7,9 @@
 [Vanilla tame/ability sources (CSV)](../data/reference/vanilla-tame-ability-sources.csv)
 
 This first curated, independently assembled *subset* contains:
-- **115** individual **beast→ability-rank relationships**, based on the [Classic Petopia abilities catalogue](https://www.wow-petopia.com/classic/abilities.php).
+- **141** individual **beast→ability-rank relationships**, based on the [Classic Petopia abilities catalogue](https://www.wow-petopia.com/classic/abilities.php).
 - **13 / 13** distinct wild-learned ability names represented.
-- **44 / 59** wild-learned rank combinations with at least one indexed source example. A further **13** have not yet had a source indexed in our research, and **two** are documented as having **no known wild training source**.
+- **57 / 59** wild-learned rank combinations with at least one indexed **candidate** tame source and **two** documented as having **no known wild training source**. All listed wild rank combinations have now been researched at least to *one example or explicit unavailable reference*.
 - Six NPC names with independent **Classic-era ID candidates** confirmed against separately linked Wowhead/ClassicDB pages. The same NPC may appear across multiple ability records; **10 rows** currently have this candidate ID.
 - **No row** has been verified against the deployed world DB, Individual Progression rules, the installed AzerothCore build or client Spell.dbc. `ip_era_access_checked = no` and `native_335_entry_checked = no` are intentional.
 
@@ -58,7 +58,7 @@ These **candidate IDs are a starting point for read-only SQL**, not permission t
 - **Lightning Breath Rank 1:** Petopia has a rank entry (pet level 1, 1 TP), but explicitly lists **no known training source**. It must **not** be auto-unlocked because the ability exists in a data file.
 - **Charge Rank 4:** Petopia lists rank 4 (pet level 36, 17 TP), **no known training source**. A boar family containing this rank in its client data does not establish any legal source beast.
 
-For all **other 13 still-unindexed rank combinations**, the correct flag is **`requires_beast_source_research`**, *not* `no_known_source`. They have deliberately not yet been exhaustively transcribed. See [coverage table](../data/reference/vanilla-rank-source-coverage.csv).
+For other ranks, **the sample coverage now has at least one source**, but is *not exhaustive*: more alternative beasts, verified creature IDs, exact client spell IDs and original-patch provenance are still needed. A row with no direct NPC ID is still a source candidate, not a complete runtime mapping. See [coverage table](../data/reference/vanilla-rank-source-coverage.csv).
 
 ## Another historical variant: weaker original "caster" tames
 
@@ -79,4 +79,4 @@ Petopia's [caster pets reference](https://www.wow-petopia.com/classic/casterpets
 
 The independent Classic addon [PetTips](https://github.com/entrail/PetTips) reports **21 ability names / 106 Classic-era ranks / 297 teaching beasts**, whereas this project's provisional Petopia-based table lists **111 rank entries**. **Do not claim either count is definitive** until independently reconciled. PetTips's [LICENSE.md](https://github.com/entrail/PetTips/blob/main/LICENSE.md) restricts redistribution and use of its source/data in other projects without author permission. It may be **read as a reference for comparison**; **do not copy its files or data** to this project. Research independently from accessible historical/reference sources.
 
-**Next deliverable:** Fill the 13 unindexed wild ranks, validate exact creature IDs and cross-check the 111-vs-106 rank discrepancy. The 115-row first batch is an initial evidence set, not the end of the tame atlas.
+**Next deliverable:** Expand **every rank** to its full original tame-source list; verify exact creature and spell IDs, investigate family eligibility anomalies and independently reconcile the **111-vs-106** count discrepancy. The 141-row sample is an initial evidence set, not a complete tame atlas.
