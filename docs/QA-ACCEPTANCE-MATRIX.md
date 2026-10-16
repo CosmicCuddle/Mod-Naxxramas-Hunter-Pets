@@ -90,6 +90,12 @@
 | ENG-14 | CMaNGOS preset versus historically documented min level | No rank eligibility follows its eight divergent bot levels without primary DBC confirmation |
 | ENG-15 | Great Stamina old trainer passive versus WotLK percent aura | Original **flat Stamina rank** restored once, not an unrelated WotLK **+8%** effect; client tooltip accurately reflects it |
 | ENG-16 | Spell IDs for all 59 wild and 52 trainer rank entries | Original patch/build mapping plus exact 3.3.5 server/client row confirmed; missing/conflicting mappings cannot activate |
+| ENG-17 | Five resistance school Rank 5s during original Vanilla | **Do not offer or grant** Arcane/Fire/Frost/Nature/Shadow Rank 5 based only on Petopia/2705x CMaNGOS spell chain; prove late-1.12 trainer offering and DBC or defer |
+| ENG-18 | Growl Rank 1–7 / Great Stamina 1–10 / Natural Armor 1–10 / each school Rank 1–4 | Verify historical Rank 1+ upgrade chain, Hunter-trainer wrapper spell vs actual pet aura/spell, pet level, TP and coin separately |
+| ENG-19 | Great Stamina after trained and untrained on same pet | Exact increase/decrease in **Stamina stat AND actual maximum health**, including recalculation after relog/stable; no duplicate WotLK % bonuses |
+| ENG-20 | Public `spell_ranks.sql` lacks a candidate ID | Do not conclude the DBC spell is absent; verify deployed **Spell.dbc**, server and client effect rows and core spell loading |
+| ENG-21 | Source version audit and provenance | Every enabled pet rank tied to SHA/version of original 1.12 data, deployed 3.3.5 DBC, exact per-Hunter IP rule and documented eligibility |
+
 
 ## F. Loyalty, happiness, food and progression
 
