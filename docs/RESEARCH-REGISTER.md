@@ -49,6 +49,13 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - **Furious Howl / wolves:** investigate whether and why specific tames matter for top-rank acquisition.
 - **Rare vs elite:** do not conflate spawn rarity, elite creature combat stats and tamed-pet performance.
 
+## Specific source gaps and authenticity conflicts
+
+- **Charge Rank 4** is listed in [Classic Petopia](https://www.wow-petopia.com/classic/abilities.php) as a level-36, 17-TP spell with **no known training source**. Preserve this distinction: the rank's existence does not prove that a Hunter can earn it from a specific beast. Do not invent a source entry.
+- **Research table costs:** the 111 candidate rank rows now all have training-point costs transcribed from the Petopia Classic catalogue. This does **not** verify original 1.12 values or any 3.3.5 spell ID; a complete independent audit remains required.
+- **Classic vs original Vanilla:** Petopia notes that some inferior original 'caster' pets were bugged and that Classic Era does not reproduce that bug. Decide whether authentic end-state or bug-for-bug fidelity is intended; the late-Vanilla 1.12 baseline remains **provisional**.
+- **Traceability:** [54 initial requirement-to-work-package-to-test links](../data/reference/requirement-traceability.csv) are planning references, not confirmation of gameplay support.
+
 ## Open research questions — must answer before broad coding
 
 1. Which IP branch is actually installed, and does it contain/enable Hunter-specific pet changes today?
