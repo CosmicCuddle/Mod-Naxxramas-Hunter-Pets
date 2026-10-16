@@ -78,6 +78,18 @@ Our related Naxx Core currently has:
 
 These are **source-based design references** and must not be silently recompiled or modified while diagnosing Hunter Pets.
 
+## Step F — optional in-game progression cross-check (read-only)
+
+On a character with sufficient command permissions, `.ip get` can display the current **raw recorded progression** without mutating quest data. The modern IP [command implementation](https://github.com/ZhengPeiRu21/mod-individual-progression/blob/master/src/cs_individualProgression.cpp) (public blob `04c15a3dae8b49ebc314e09522d7941ac8258225`, lines 18 and 68–90) currently registers it at **GM security level** and reports `GetPlayerProgressionFromQuests`. The exact command permissions of the compiled realm may differ.
+
+1. With a safe test character, use `.ip get` **only if authorised**; this is a nonmutating query.
+2. If you have permission and the target is an approved **disposable** bot, use the documented `.ip get [player]` syntax to inspect that actor's recorded progression.
+3. **Do not** use `.ip set`, `.ip setbot` or GM account/character modifications as a substitute for this read-only audit.
+4. Record the stage number and whether a global `ProgressionLimit` is active. `.ip get` calls the **raw quest reader**, whereas IP's `hasPassedProgression` additionally respects the configured cap. Those may intentionally disagree; the pet adapter must apply the effective rules consistently.
+5. Compare human and bot stages **before and after legitimate group activity**, *only on an approved test instance or with test-only characters*. IP may resynchronise the bot's quests when joining a group; changing group membership can itself affect progression, so do not do it on valued characters just for diagnostics.
+
+The IP [public README](https://github.com/ZhengPeiRu21/mod-individual-progression) still contains some Player Settings wording even though current `GetPlayerProgressionFromQuests` reads hidden rewarded quests. This is another reason the **actual installed revision and exact source** must prevail over generic documentation.
+
 ## Step F — exact audit report fields
 
 ```text
