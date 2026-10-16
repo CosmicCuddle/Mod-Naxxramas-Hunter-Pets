@@ -34,6 +34,10 @@ There **is** a global `AllSpellScript::OnSpellCheckCast` (exposed through `Spell
 
 The **installed** worldserver revision and owner IP/Naxx/Playerbots source must be pinned separately before extrapolating any line/symbol.
 
+## Related existing module precedent: Individual Progression
+
+See [IP Hunter-pet precedent audit](IP-HUNTER-PET-PRECEDENT-AUDIT.md). IP already uses UnitScript to adjust pet physical/spell/periodic damage and healing based on the **owning player's actual progression**, and OnPlayerGiveXP to preserve pet XP when human Vanilla owners or qualifying bot accounts are capped. That is a **valuable design pattern for precise module-only owner/era gating**. Its OnPlayerSpellCast handler cancels some PLAYER spell ranks in a WotLK branch, but it does **not** intercept pet::learnSpell. Borrow its owner-aware approach, not a false assumption that it already solved WotLK native pet auto-grants. The historical IP HunterPetLevelFix was reported ineffective in [issue #423](https://github.com/ZhengPeiRu21/mod-individual-progression/issues/423); current public source search did not find the old config implementation. Installed IP must be separately verified.
+
 ## Why a global data shortcut fails our owner/era contract
 
 ```text
