@@ -4,7 +4,7 @@
 
 ## Executive answer
 
-**Some effects have credible module scripting hooks**: per-target hit damage, aura amount, aura duration, and target selection. **No full-fidelity solution is yet proven** for original Focus costs, cooldowns, native client tooltips, pre-learning, or the existing WotLK Furious Howl target and aura behaviours. A spell ID that exists in both eras may produce a *different effect*. Do not label a whole ability RESTORED after proving one damage number.
+**Some effects have credible module scripting hooks**: per-target hit damage, aura amount, aura duration, and target selection. **New source finding:** [the owner spell-modifier path](PET-OWNER-SPELLMOD-FOCUS-COOLDOWN-AUDIT.md) can affect a pet's **native pre-cast Focus cost and spell/category cooldown** via `SPELLMOD_COST` and `SPELLMOD_COOLDOWN`, including manual and AI casts. **A safe module-owned modifier aura, exact spell-only scope, original client display, auto-learning interception and complete effect restoration are still NOT PROVEN**. The existing WotLK Furious Howl filter remains an independent obstacle. A spell ID that exists in both eras may produce a *different effect*. Do not label a whole ability RESTORED after proving one damage number.
 
 The evidence is especially strong for a **previously overlooked, already-installed upstream binding**: public WorldDB base `spell_script_names` contains `(-24604, 'spell_hun_target_self_and_pet')`. That script registers `OnObjectAreaTargetSelect` for `TARGET_UNIT_CASTER_AREA_PARTY` but **removes all targets except the casting pet and its owner**. It is shared with WotLK **Call of the Wild 53434**. Simply attaching an extra party-target script to 24604 would **not guarantee** that party members survive this existing filter or preserve WotLK behaviour. Negative first-rank bindings apply across the chain per [AzerothCore spell_script_names docs](https://www.azerothcore.org/wiki/spell_script_names), contingent on actual `spell_ranks` metadata. A separate module-owned test and era-conditional **complete target/effect strategy** is required.
 
@@ -34,7 +34,7 @@ The installed worldserver's source and **active** `spell_script_names` rows are 
 - `SpellScript::OnHit` + `SetHitDamage`: **candidate** to set per-target Physical damage, after native calculations. Need verify actual 3.3.5 spell damage effect and order relative to IP pet damage modifications, resistances and glancing/crit calculations.
 - `AuraScript::DoEffectCalcAmount`: **candidate** to adjust `SPELL_AURA_MOD_ATTACK_POWER` amount *if the actual DBC effect uses this aura type*; can't convert a different aura effect type.
 - `AllSpellScript::OnCalcMaxDuration`: **candidate** to produce 4 seconds on the aura for a truly Vanilla-owned pet. Verify same aura may be cast by nonpet NPCs, target has correct caster/owner and a reliable stage.
-- Native **10-second cooldown**, client tooltip and cast UI: **not solved** by the above adjustments.
+- Native **10-second cooldown**, client tooltip and cast UI: **not solved by damage/aura adjustments**; the separate owner `SPELLMOD_COOLDOWN` candidate needs exact category/zero-clamp/UI proof.
 - **Verdict:** `SOME_FIELDS_SCRIPTABLE_WITH_PROOF`; **FULL_FIDELITY_NOT_PROVEN**.
 
 ### B. Furious Howl Rank 1 — 24604
@@ -51,7 +51,7 @@ The installed worldserver's source and **active** `spell_script_names` rows are 
 **Reference conflict:** Vanilla 78–90 Nature/50 Focus/no listed cooldown; public 3.3.5 40–52 base Nature, 20 Focus, 10-second cooldown and different scaling.
 
 - `SpellScript::SetHitDamage` is **promising** for Nature damage **if the installed DBC effect and source caster match**.
-- **Resource/cooldown:** The inspected `SpellScript.h` hooks include cast checks and hit/effect callbacks but **do not expose a documented per-owner `SetFocusCost` or `SetSpellRecoveryTime`**. AzerothCore `Spell::TakePower`, `CheckPower` and native cooldown logic work from loaded spell data and native `m_powerCost`. A second postcast Focus charge is **not equivalent**: missing Focus/cooldown checks and client predictions could allow unauthorized casts or desync.
+- **Resource/cooldown:** The inspected `SpellScript.h` lacks direct `SetFocusCost` or `SetSpellRecoveryTime` methods, **but native owner `SPELLMOD_COST`/`SPELLMOD_COOLDOWN` calculations exist**. They need an exact, safe owner aura and spell-scope proof before claiming a module-only fix. AzerothCore `Spell::TakePower`, `CheckPower` and native cooldown logic work from loaded spell data and native `m_powerCost`. A second postcast Focus charge is **not equivalent**: missing Focus/cooldown checks and client predictions could allow unauthorized casts or desync.
 - Historical Son of Hakkar **Rank 6 (25012)** must be audited **separately**. Never infer its availability, damage or native learned state from 25011.
 - **Verdict:** `DAMAGE_PILOT_POSSIBLE`, **full Focus/cooldown/client fidelity blocked pending further engine API evidence**.
 
@@ -83,10 +83,16 @@ The installed worldserver's source and **active** `spell_script_names` rows are 
 | Target selection | `OnObjectAreaTargetSelect` | **SUPPORTED API, existing Furious Howl filter conflict** |
 | Proc on next physical hit | `AuraScript::OnEffectProc` candidate | **Hook exists, compatible aura/proc and 3.3.5 spell not established** |
 | Threat component of Growl | Effect-specific `SetEffectValue` candidate | **Effect type and handler ordering not yet proven** |
-| Per-owner Focus cost | No straightforward documented SpellScript hook in inspected interface | **NOT PROVEN** |
-| Per-owner native cooldown | No straightforward documented SpellScript hook in inspected interface | **NOT PROVEN** |
+| Per-owner Focus cost | **Owner `SPELLMOD_COST` path** through `SpellInfo::CalcPowerCost`, potentially AuraScript spell modifier | **NATIVE PATH VERIFIED IN PUBLIC SOURCE; safe module-only, spell-ID-specific owner aura UNPROVEN** |
+| Per-owner native cooldown | **Owner `SPELLMOD_COOLDOWN` path** through `Creature::AddSpellCooldown` for manual & AI autocasts | **NATIVE PATH VERIFIED IN PUBLIC SOURCE; category/CD zero clamp and client parity UNPROVEN** |
 | Client spellbook, tooltip, spell description and visual | Server spell scripts do not edit existing client Spell.dbc | **NOT SOLVED without separate compatible client presentation path** |
 | Suppress native auto-learnt rank before client/passive change | No generic PetScript pre-learn veto found | **WP-03 HARD BLOCKER** |
+
+## New owner spell-modifier opportunity and safety trap
+
+The initial `SpellScript.h` review did not expose a **direct per-cast cost setter**. Further source inspection revealed a different supported path: [owner spell-modifier analysis](PET-OWNER-SPELLMOD-FOCUS-COOLDOWN-AUDIT.md) and [16 new acceptance cases](../data/reference/pet-owner-spellmod-feasibility-tests.csv). `SpellInfo::CalcPowerCost` and `Creature::AddSpellCooldown` consult the pet's controlling Player's active `SPELLMOD_COST` and `SPELLMOD_COOLDOWN`. A properly prepared modifier *might* correct resource consumption/cooldown **before native cast handling**, unlike a rejected post-cast Focus penalty.
+
+**Not a solution yet:** no source-proven safely scoped aura/SpellID exists in the project. `SpellModifier` matching uses SpellFamilyName+mask; the global `OnIsAffectedBySpellModCheck` override returning `false` **forces a match** but has no direct caster argument and is dangerous if incorrectly scoped. The native effect, actual Spell.dbc, category cooldown, owner IP transition and client tooltip all still require proof. The previously identified Furious Howl `-24604` target filter remains in place.
 
 ## A safer alternative to an all-or-nothing rewrite
 
