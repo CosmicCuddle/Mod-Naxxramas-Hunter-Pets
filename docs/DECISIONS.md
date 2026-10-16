@@ -26,6 +26,8 @@
 | D-016 | BLOCKED / INVESTIGATE | Can all WotLK automatic pet spell learn events be safely prevented within module-only hooks? | Current PetScript shows unlearn guards, no generic pet-spell learn permission hook. |
 | D-017 | OPEN | Initial proof of concept: Broken Tooth speed first, then Son of Hakkar learn-by-use pilot. | Stage-gate the riskiest mechanics early. |
 | D-018 | OPEN | Exact effort/delivery after source audit. | 42–80 engineering days is an initial rough estimate, not a commitment. |
+| D-019 | AGREED | Treat repository as **both a detailed historical/technical blueprint and actionable developer roadmap**. | Every requirement links evidence, implementation package, risk, acceptance and approval; detail and provenance matter more than vague progress descriptions. |
+| D-020 | PROPOSED / SOURCE-CONFLICT | Charge Rank 4 appears in Classic Petopia but **no known tame-teaching source** is recorded. | Do not invent a source or mark obtainable without new evidence. |
 
 ## Approval discipline
 
