@@ -48,6 +48,14 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
 - [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
 
+## Spell effect module-only hook feasibility — five priority abilities
+
+- [Source-pinned spell-effect feasibility](VANILLA-PET-SPELL-EFFECT-HOOK-FEASIBILITY.md) examines current public `SpellScript::SetHitDamage`, `SetEffectValue`, `AuraScript::DoEffectCalcAmount`, `AllSpellScript::OnCalcMaxDuration`, and `OnObjectAreaTargetSelect` against *specific* Vanilla mechanics. [18-case research matrix](../data/reference/vanilla-spell-effect-hook-feasibility.csv) records candidates, blockers, client/server proof and future stage tests separately.
+- **New hard compatibility conflict:** public AzerothCore's `spell_script_names` binds **`-24604` Furious Howl rank chain** to `spell_hun_target_self_and_pet`, a script that **removes every party target except the pet and its master**. The same script serves Call of the Wild 53434. One more additive target filter is not an established Vanilla party-target solution; never remove that binding globally or disrupt post-Vanilla Hunters.
+- `SetHitDamage` is a **target hook** while `SetEffectValue` is an **effect hook**: the latter could help an actual `SPELL_EFFECT_THREAT` effect but **Growl's exact deployed SpellInfo must be checked**. `DoEffectCalcAmount` changes *an existing aura amount*, not percent-versus-flat aura type.
+- No equivalent safe per-owner **Focus cost / native recovery time / 3.3.5 client tooltip** override was found in inspected SpellScript interface. Client/UI and WP-03 pet pre-learn remain unsolved.
+- **All of this is public API research, NOT a successful module prototype or an owner's server/DBC audit.** Research index now includes **120** source entries; five newest entries pin hook and existing script conflict.
+
 ## First verified public spell-effect disagreements — five abilities
 
 - [Detailed Classic vs public 3.3.5 research pilot](PUBLIC-335-SPELL-EFFECT-CONFLICT-PILOT.md) now compares Screech 24579, Furious Howl 24604, Lightning Breath 25011, Growl 14916 and original Great Stamina 4187 vs modern pet talent 61686. [Six-case discrepancy CSV](../data/reference/public-335-spell-effect-conflicts.csv) records **reference effects, sources, specific differences, original 1.12/installed 3.3.5 proof status and auto-grant status**.
