@@ -122,6 +122,15 @@
 | ENG-46 | IP battlemaster bot exemption versus Hunter pet training | BG-specific exemption must never allow unrelated pet training/free spell grants or erase the bot's trained state |
 | ENG-47 | Safe `.ip get` check on authorised disposable actor | Read-only raw IP stage result matches historical quest reader; no `.ip set`/`.ip setbot` or player data mutation in diagnostic |
 | ENG-48 | Source worktree HEAD vs actually running worldserver binary | Record difference where build is stale; never claim hook availability merely from a newer `git pull` or GitHub default |
+| ENG-49 | Invalid pet spell ID on saved pet load | Never insert invalid original/Classic IDs into `pet_spell`; source shows global `DELETE FROM pet_spell WHERE spell = ?` without pet-number filter |
+| ENG-50 | Original spell rank granted as native 3.3.5 passive | Immediate `Pet::addSpell` triggered aura and native stat effects observed; active cast gate is not counted as strict passive suppression |
+| ENG-51 | Native family passives across pet save/load | `PETSPELL_FAMILY` not saved in normal `pet_spell` rows but regenerated via `LearnPetPassives`; no assumption that removing a saved row permanently prevents it |
+| ENG-52 | PetNumber reused by a different pet after replacement | Vanilla TP/loyalty/natural skill history not inherited by recycled PetNumber; use validated owner + stable pet identity/generation |
+| ENG-53 | `removeSpell(learn_prev=true)` during rank cleanup | Lower rank may be automatically relearned by native rank chain; no unearned predecessor after intended cleanup |
+| ENG-54 | Native `addSpell` action bar, autocast and talent impact | Spell selection/rank upgrade does not silently reset pet autocast or native WotLK talent bookkeeping |
+| ENG-55 | `ServerScript::CanPacketSend` whole-packet interception | No pet spellbook packets dropped during logging-only probe; packet filtering not claimed to prevent learn/passive changes |
+| ENG-56 | `OnPacketSent` instrumentation | Logs represent attempted packets even when no socket or packet later vetoed, never mislabelled 'client received' |
+
 
 
 
