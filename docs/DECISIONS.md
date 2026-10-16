@@ -42,6 +42,9 @@
 
 | D-030 | OWNER-REPORTED / IMPLEMENTATION NOT APPROVED | Owner reports newest Individual Progression installed. Modern hidden-quest era rules (Vanilla 0–7, TBC 8–12, WotLK 13+) are the first planned compatibility target; legacy support is deferred unless needed. | This does not establish exact compiled source revision and is not permission for C++ code, server tests or deployment. Native pet auto-learning remains unsolved. |
 
+| D-031 | SOURCE-CONFIRMED / SAFETY GATE | Never populate native `pet_spell` with original-Vanilla spell ID candidates before verifying actual installed 3.3.5 server SpellStore/client DBC and backup-safe staging. | Public `Pet::addSpell` can remove an invalid saved ID from `pet_spell` **for all pets** by `WHERE spell = ?`; plain pet loading may initiate cleanup. Core's native `PetNumber` can be recycled, requiring validated owner+pet identity in a custom future ledger. |
+| D-032 | SOURCE-CONFIRMED / NOT A SOLUTION | `ServerScript::CanPacketSend` whole-packet veto and `OnPacketSent` observation can support diagnostics but do **not** prevent pet spell learning. | Passive spell effects, native action bar and rank records exist before packet interception; blocking legitimate pet spellbook packet risks client desync. No packet blocking approved. |
+
 ## Approval discipline
 
 Update status only after an explicit owner decision or a documented reproducible technical finding. Record date, affected docs/files, user-visible impact, any backup requirements, and release state. A developer's suggestion is not an owner approval.
