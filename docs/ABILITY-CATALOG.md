@@ -1,6 +1,6 @@
 # Vanilla ability and training-rank catalogue
 
-**Status:** Human-readable blueprint reference. Source: [Classic Petopia abilities](https://www.wow-petopia.com/classic/abilities.php) and [Classic training](https://www.wow-petopia.com/classic/training.php). A future **canonical row-per-rank** machine-readable dataset with exact deployed spell IDs, source NPC entries, and costs is still mandatory.
+**Status:** Human-readable blueprint reference. Source: [Classic Petopia abilities](https://www.wow-petopia.com/classic/abilities.php) and [Classic training](https://www.wow-petopia.com/classic/training.php). A **provisional** 111-row rank/level/cost dataset now exists at [vanilla-ability-ranks.csv](../data/reference/vanilla-ability-ranks.csv), with all costs populated from this Classic guide. An independently verified **original 1.12 dataset**, exact deployed spell IDs, source NPC entries and per-family mappings are still mandatory.
 
 ## Scope: exactly 21 catalogue ability names
 
@@ -51,6 +51,10 @@ The table lists all known Vanilla ranks by **minimum PET level**. It is **not** 
 - Passives have different, often substantial costs; do not count passives as active.
 - A canonical table must include `tp_cost`, `level_min`, `ability_category`, `spell_family`, `known_source_kind` and per-rank spell ID provenance.
 
+### Research note: Charge Rank 4
+
+[Classic Petopia](https://www.wow-petopia.com/classic/abilities.php) lists Charge 4 at pet level 36 for **17 TP**, but explicitly reports **no known training source**. The rank can exist in a ruleset without having a wild source that makes it learnable. This distinction must be preserved in the final creature→rank catalogue. **Do not invent a boar that teaches it.** See [evidence standards](RESEARCH-EVIDENCE-STANDARDS.md).
+
 ### Selected reference costs, good test fixtures
 
 | Skill | Rank | Pet level | TP cost | Source |
@@ -86,7 +90,7 @@ The table lists all known Vanilla ranks by **minimum PET level**. It is **not** 
 
 ## Authoritative input data to build next
 
-`data/reference/vanilla-abilities.csv`: canonical `ability_key,rank,min_pet_level,tp_cost,is_active,trainer_or_wild,allowed_family_codes,classic_spell_id,server_spell_id,source_url,patch_id,evidence_confidence,status` per rank.
+`data/reference/vanilla-ability-ranks.csv`: existing candidate rank catalogue; extend and verify to canonical `ability_key,rank,min_pet_level,tp_cost,is_active,trainer_or_wild,allowed_family_codes,classic_spell_id,server_spell_id,source_url,patch_id,evidence_confidence,status` per rank.
 
 `data/reference/vanilla-teaching-beasts.csv`: `creature_entry,creature_name,family_code,map_or_zone,level_min,level_max,ability_key,rank,availability_patch,source_url,provenance,confirmed_on_server`.
 
