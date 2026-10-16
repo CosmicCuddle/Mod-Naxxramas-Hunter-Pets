@@ -103,6 +103,15 @@
 | ENG-27 | New tame source and pet identity after stable/relog | Native CreatureId, unique PetNumber and visual source persist, including rare model; no inference from nearby NPC |
 | ENG-28 | IP-capped human level-60 Hunter killing monsters with original low-level pet | Pet receives the intended XP exactly **once** although human XP capped; no double payment or missed XP through IP `OnPlayerGiveXP` |
 | ENG-29 | Capped Random Playerbot / Alt Bot pet XP handoff | Correct account-specific IP branch, legal pet level, no bleed into human/other bots, no duplicate XP |
+| ENG-30 | Illegal Vanilla Hunter active pet rank cast manual / autocast / bot / triggered | `OnSpellCheckCast` test proves no illegal effect or cooldown bypass; legal natural/paid ranks work; no other classes affected |
+| ENG-31 | Detect actual async native pet load completion | `isBeingLoaded` only false **after** native `PetSpellInitialize` packet; any 'ready' handler documents temporary client exposure and cannot claim strict prevention |
+| ENG-32 | Postgrant reconciliation after levelup/stable/relog | No rank regrant from `InitLevelupSpellsForLevel`, no old-rank downgrade loop, passive leak, action bar reset, repeated spam, crash divergence or saved pet damage |
+| ENG-33 | Attempt global SpellMgr / DBC / world rank edits | Reject any cross-era/global alteration, shared map const-cast, unofficial core patch or client Spell.dbc mutation; strict module-only isolation maintained |
+| ENG-34 | Check both spell level-up sources | `SpellMgr` family-level skill-line and PetDefaultSpells paths each accounted for; no rank receives unexpected auto-grant from other path |
+| ENG-35 | Pet passive aura before/after cast denial | No passively granted forbidden Vanilla aura (Stamina/Armor/Resistance/talent) applies despite active-cast denial; fail if leakage |
+| ENG-36 | Client packet/log order around summon and levelup | No unapproved transient WotLK `PetLearnedSpell`, `PetSpellInitialize`, or misleading action-bar/autocast without owner-approved compromise |
+| ENG-37 | Owner IP transitions with spell gating enabled and disabled | Vanilla-stage human/Alt/Random rules scoped correctly; **post-Vanilla Hunter, non-Hunter, wild NPC** unaffected by spell check or cleanup |
+
 
 
 
