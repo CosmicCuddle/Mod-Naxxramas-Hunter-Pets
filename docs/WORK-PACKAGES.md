@@ -89,7 +89,9 @@ Server checks Hunter learned rank, pet family, level, TP, active count and corre
 
 ## WP-07: Full Vanilla families, special creatures, spell effects
 
-**Current:** PLANNED. **Dependencies:** WP-01, WP-02, WP-04, WP-06.
+**Current:** SOURCE-LEVEL SPELL EFFECT RESEARCH IN PROGRESS; NO IMPLEMENTATION APPROVED. **Dependencies:** WP-01, WP-02, WP-03 strict pre-learn veto, WP-04, WP-06.
+
+**Key new evidence:** [Spell effect hook feasibility](VANILLA-PET-SPELL-EFFECT-HOOK-FEASIBILITY.md) and [18 feature-level candidates](../data/reference/vanilla-spell-effect-hook-feasibility.csv), tracked by [WP-07 research issue #6](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/6). Public native `-24604` rank-wide Furious Howl binding filters party to pet+owner, shared with Call of the Wild 53434. Do not disrupt it globally. Target damage, aura amount and duration callbacks exist, but installed 3.3.5 DBC, Focus costs, cooldowns, client tooltip and correct auto-rank eligibility remain NO-GO / UNVERIFIED for full fidelity. A source-only hook is NOT a completed ability.
 
 Implement validated family multipliers only once; complete approved beast-specific attack speeds and source abilities; restore Classic-ranked damage, resistances, focus, threat, buffs, Poison/Howl/Screech, Shell Shield, Charge and other effects where 3.3.5 differs. Confirm talent and IP stat scaling. Test all families and ranks, plus raid-specific special beasts.
 
