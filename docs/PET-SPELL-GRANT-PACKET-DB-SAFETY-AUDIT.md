@@ -13,7 +13,7 @@ In public AzerothCore, automatic family/default pet spells reach **`Pet::learnSp
 | File | Reviewed public file blob SHA | Critical source behaviour |
 |---|---|---|
 | [Pet.cpp](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Entities/Pet/Pet.cpp) | `c58f4cc10364cafe68e994bf4f13946630fee611` | `addSpell` lines 1766–1900, `learnSpell` 1903–1917, `InitLevelupSpellsForLevel` 1920–1957, `LearnPetPassives` 2339–2358, `_LoadSpells` 1559–1570, `_SaveSpells` 1572 onward |
-| [CharacterDatabase.cpp](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/database/Database/Implementation/CharacterDatabase.cpp) | **Capture exact blob SHA on next source pin** | Prepared statement around line 383: `DELETE FROM pet_spell WHERE spell = ?`; later `CHAR_DEL_PET_SPELLS` is scoped by `guid = ?` |
+| [CharacterDatabase.cpp](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/database/Database/Implementation/CharacterDatabase.cpp) | `e4dffef486e273308599723275640c73514e851f` | Prepared statement around line 383: `DELETE FROM pet_spell WHERE spell = ?`; later `CHAR_DEL_PET_SPELLS` is scoped by `guid = ?` |
 | [ServerScript.h](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Scripting/ScriptDefines/ServerScript.h) | `525ab38a8067ee824260d41372d098600683247c` | `CanPacketSend(WorldSession*, WorldPacket const&)` returns bool, line 65; `OnPacketSent` is observer-only, line 85 |
 | [ServerScript.cpp](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Scripting/ScriptDefines/ServerScript.cpp) | `30b7156039da386fe0bfc20031ce096c27346f78` | `ScriptMgr::CanPacketSend` dispatch, line 47; `OnPacketSent` observer dispatch, line 65 |
 | [WorldSession.cpp](https://github.com/azerothcore/azerothcore-wotlk/blob/master/src/server/game/Server/WorldSession.cpp) | `fc96398079b50984ed0b82183d713c666af6939b` | `SendPacket`: `OnPacketSent` at 310, socket check, then `CanPacketSend` at 351, then socket sends at 356 |
@@ -75,7 +75,17 @@ addSpell(spellId, ACT_DECIDE, PETSPELL_NEW, PETSPELL_FAMILY)
 
 `Pet::_SaveSpells` explicitly **skips `PETSPELL_FAMILY`** entries. Consequently removing one family passive from the native spellbook and saving the pet is **not enough**; it may be regenerated on loading by the core. The old Vanilla Great Stamina/Natural Armor/resistance passive effects also need their own independent data and effect verification, and must not be confused with 3.3.5 native pet family passives.
 
-## Finding S-05 — native pet-spell persistence is destructive by design
+## Finding S-05 — removal also has a rank-chain trap
+
+A closer public-source check of `Pet::removeSpell(spell_id, learn_prev, clear_ab)` shows:
+- It removes auras, may adjust native WotLK talent points, and optionally removes the action-bar spell.
+- If **`learn_prev=true`**, it can call `sSpellMgr->GetPrevSpellInChain(spell_id)` and **learn the previous rank automatically**.
+- `Pet::InitLevelupSpellsForLevel` uses `unlearnSpell(spellId, true)` when level would be below a spell's level, which can **recreate a lower, unearned rank**.
+- For a custom Vanilla rules reconciliation experiment, setting an unlearn option indiscriminately could create exactly the lower rank the owner did not teach. Every chosen `learn_prev`/`clear_ab` combination needs a real disposable test and explicit family/source legality check.
+
+This does not mean every pet rank removal necessarily resets talents; the native talent-cost branch only applies to actual talent spells.
+
+## Finding S-06 — native pet-spell persistence is destructive by design
 
 At save, `Pet::_SaveSpells` clears all rows `WHERE guid = ?` (pet number) and rewrites current non-family, non-removed `m_spells` records. It explicitly comments that **pet numbers are recycled**, requiring full rewrite to prevent one new pet inheriting old spells.
 
