@@ -53,6 +53,7 @@ Hunter casts Tame Beast (spell 1515)
 2. **Pet level is changed before the new pet appears in the world**. Vanilla's keep-original-wild-level requirement cannot be assumed implementable by a mere pet-level config or OnAdd hook. The source formula occurs twice in `Unit::CreateTamedPetFrom` and `EffectTameCreature` (visual). Need module-only **pre-effect** interception or an owner-approved safe post-creation state transition *before release*.
 3. The new pet's natural and family spells are initialized through the core WotLK `InitPetCreateSpells` BEFORE `OnPetAddToWorld`. Neither a source rank dataset nor preserved `GetEntry()` automatically recreates original learning.
 4. `OnPetAddToWorld` on **new tame** is after first spell creation and before the new pet's save. That differs from **loading an existing pet** (section 3), so one handler cannot simply assume this callback always means 'all spells loaded'.
+5. In `EffectTameCreature`, `AddToMap` occurs **before** `unitCaster->SetMinion(pet, true)`. Therefore a handler must **not** assume `owner->GetPet()` already returns the new pet at `OnPetAddToWorld`. In `InitTamedPet`, `InitStatsForLevel` is **before** `SetPetNumber`—the early stat hook cannot assume a native unique pet number exists either. Both are important for identity/ledger design.
 
 ## 3. What really happens when loading a stabled/existing pet
 
