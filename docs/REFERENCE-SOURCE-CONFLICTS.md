@@ -12,7 +12,7 @@
 
 ## Conflict C-002: Rank exists, no known source
 
-[Classic Petopia's ability catalogue](https://www.wow-petopia.com/classic/abilities.php) says **Lightning Breath 1** and **Charge 4** lack known wild sources. A rank may exist client-side without any animal that teaches it. Do not grant it automatically and do not mislabel thirteen currently unresearched rank-source cases as impossible.
+[Classic Petopia's ability catalogue](https://www.wow-petopia.com/classic/abilities.php) says **Lightning Breath 1** and **Charge 4** lack known wild sources. A rank may exist client-side without any animal that teaches it. Do not grant it automatically and do not mistake an incomplete local source list for an unobtainable rank. The 141-row sample now includes at least one candidate source for each of the other **57** wild-ranked entries.
 
 ## Conflict C-003: Original caster-pet stat problem versus Classic Era
 
@@ -24,6 +24,14 @@
 - Original per-creature attack cadence is **not** an unlimited DPS buff; WotLK normalises hunter-pet autoattacks.
 - 1.9's `base pet speed standardized` wording needs scrutiny: movement speed and melee swing interval should be evaluated separately, not conflated.
 - Classic Petopia source info may contain patch-later tameability while modern AzerothCore world DB retains other NPC flags.
+
+## Conflict C-005: Wild beast family vs ability whitelist
+
+The [Petopia Claw Rank 5 list](https://www.wow-petopia.com/classic/abilities.php) includes a **Drywallow Snapper** labelled a **Crocolisk** as a tame-learning source, while Petopia's Claw ability-family whitelist excludes Crocolisks. This is a **research discrepancy**, not evidence that Crocolisks should universally gain Claw. Resolve actual source creature ID and its original `CreatureFamily`/skill data before adding this anomalous source. The current atlas does **not** include it as an approved mapping.
+
+## Conflict C-006: Source creature level vs minimum training level
+
+The [Bite Rank 6 list](https://www.wow-petopia.com/classic/abilities.php) includes **Barnabus (wild level 38)** although the listed **minimum pet training level is 40**. These fields represent different concepts. A developer must not automatically reject or alter historic tame-source evidence because the wild NPC's level is below the rank's training eligibility level. Validate what a just-tamed pet may initially know and when a second pet may be taught the rank.
 
 ## Data-rights policy
 
