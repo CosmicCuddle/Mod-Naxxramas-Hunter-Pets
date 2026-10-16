@@ -137,6 +137,14 @@
 | ENG-61 | Public base DBC SQL empty but deployed binary has data | Do not report native spells missing based on no base `INSERT` records; compare effective binary-plus-local-DB data and verify file hashes |
 | ENG-62 | All 17 Vanilla family identities against loaded 3.3.5 families | Source reference family is matched to verified `CreatureFamily.dbc ID` and its two skill lines, never guessed from name/model alone |
 | ENG-63 | All 21 Vanilla ability names / 111 rank records versus loaded 3.3.5 | Each rank classified by **actual** auto-levelup/default/passive status and 3.3.5 server/client spell effects; unresolved ranks remain `UNVERIFIED` |
+| ENG-64 | Screech Rank 4 same ID 24579 across public Classic and 3.3.5 | Detect changed damage, debuff duration/AP, required pet level and cooldown; no blind reuse for original Vanilla |
+| ENG-65 | Furious Howl Rank 1 same ID 24604 across public sources | Vanilla party next-hit damage buff vs 3.3.5 wolf/master AP buff kept distinct; target and focus/cooldown correct |
+| ENG-66 | Lightning Breath Rank 5 same ID 25011 across public sources | Vanilla 50 Focus/no listed cooldown/78–90 Nature vs public 3.3.5 20 Focus/10s cooldown/40–52 base and scaling; Rank 6 separately verified |
+| ENG-67 | Growl Rank 2 same ID 14916 threat calculation | Classic 65 threat vs public 3.3.5 reference scaling 65+4.1/level investigated; TP=0 is independent of 15 Focus cast cost |
+| ENG-68 | Great Stamina identical name with different spell IDs 4187 vs 61686 | Classic trained +3 flat stat never silently replaced by 3.3.5 pet talent +4% Stamina; no doubled HP/stat benefits |
+| ENG-69 | Screech Rank 5 expansion spell 27051 | Never map post-Vanilla 27051 to original Vanilla Screech Rank 4; era and rank provenance checked |
+| ENG-70 | Public reference proves a 3.3.5 spell has different effects | Keep native family level-up/default/passive grant flags **UNVERIFIED** until installed 3.3.5 binary+override family map and runtime tame/load are checked |
+
 
 
 
