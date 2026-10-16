@@ -48,6 +48,9 @@
 | R-37 | High | Public base `creaturefamily_dbc`, `skilllineability_dbc`, `creaturespelldata_dbc` tables define schema but contain **zero base data** | **Do not equate empty base SQL with absent runtime pet spells**; binary DBC plus local override data must be consulted |
 | R-38 | High | Core loads level-up spells, creature defaults and family passives from **different data and filters** | Audit each route separately for all 17 original pet families; do not treat 3.3.5 spell ID presence as automatic grant |
 | R-39 | High | Creature defaults use `PetSpellDataId` or summon-template route and deduplicate overlapping level spells | Do not infer tame default spell from an ordinary creature_template spell slot without proving matching runtime route |
+| R-40 | **Critical** | Public Classic and 3.3.5 pages show **same IDs with different effects** (Screech 24579, Furious Howl 24604, Lightning Breath 25011) | Never approve historic-rank ID reuse without effects, cooldown, resource, target, scaling, client data and installed native source proof |
+| R-41 | High | Growl 14916 public 3.3.5 reference adds level threat scaling absent in Classic page; WotLK stamina pet talent 61686 is different from Classic trainer 4187 | Do not mistake matching spell name/rank or Focus/TP costs for functional equivalence; prevent duplicate IP/pet-scaling bonuses |
+
 
 
 
