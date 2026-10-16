@@ -1,6 +1,6 @@
 # Master blueprint — Vanilla Hunter pet restoration
 
-**Document status:** Architectural blueprint, preliminary research edition, 16 October 2026. No implementation is authorised or claimed. Changes to this design require review and the project owner's approval.
+**Document status:** Detailed Vanilla gameplay blueprint, preliminary research edition, 16 October 2026. Read alongside the [unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROADMAP.md) and the [work packages](WORK-PACKAGES.md) for implementation sequence and gated evidence. No implementation is authorised or claimed. Changes to this design require review and the project owner's approval.
 
 ## 0. Mission
 
