@@ -38,6 +38,8 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Installed IP read-only MobaXterm inventory](docs/READ-ONLY-INSTALLED-IP-INVENTORY.md) — no git pull, no SQL, no config changes; identify exact running/source versions and cross-check IP stage.
 - [22-scenario IP Hunter-pet acceptance matrix](data/reference/ip-pet-owner-era-acceptance-matrix.csv) — all Vanilla stages, TBC/WotLK, Alt/Random Bots, group sync and capped XP.
 - [IP Hunter-pet precedent and compatibility audit](docs/IP-HUNTER-PET-PRECEDENT-AUDIT.md) — **IP's owner-stage-aware pet damage/XP hooks are reusable as a design pattern**, but its Player spell cancellation is not a pet auto-learn veto; historical HunterPetLevelFix complaint documented.
+- [Pet grant, packet and database safety audit](docs/PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) — auto passives, outgoing spellbook packet hook, global invalid-spell cleanup and recycled pet numbers.
+- [Ten WP-03 pet spell safety tests](data/reference/wp03-pet-spell-safety-tests.csv) — explicit staged packet/passive/save/rank regressions.
 - [Auto spell-learning module-only feasibility decision](docs/AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) — exact global DBC-derived grant path, scope-aware cast-denial candidate, and why neither late reconciliation nor a global override proves full Vanilla fidelity.
 - [WP-03 disposable staging protocol](docs/WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md) — permission-gated, backup-first, logging-only sequence then approval-specific experiments, packet-state/crash controls and GO/NO-GO criteria.
 - [16-event lifecycle trace (CSV)](data/reference/public-core-pet-lifecycle-events.csv) — source, stage ordering, event risks, API hook and expected test.
