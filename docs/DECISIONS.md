@@ -40,6 +40,8 @@
 
 
 
+| D-030 | OWNER-REPORTED / IMPLEMENTATION NOT APPROVED | Owner reports newest Individual Progression installed. Modern hidden-quest era rules (Vanilla 0–7, TBC 8–12, WotLK 13+) are the first planned compatibility target; legacy support is deferred unless needed. | This does not establish exact compiled source revision and is not permission for C++ code, server tests or deployment. Native pet auto-learning remains unsolved. |
+
 ## Approval discipline
 
 Update status only after an explicit owner decision or a documented reproducible technical finding. Record date, affected docs/files, user-visible impact, any backup requirements, and release state. A developer's suggestion is not an owner approval.
