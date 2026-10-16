@@ -86,6 +86,10 @@
 | ENG-10 | Owner's talents and IP damage scaling | No stacking of duplicate family/happiness damage multipliers |
 | ENG-11 | Pet ability autocast toggled then relog | Preference and action bar preserved |
 | ENG-12 | Pet tooltip/data on 3.3.5 client | No false display/phantom Rank 80 skill; approved UI fallback |
+| ENG-13 | Screech Rank 4 skill mapping and cast on staging | **Classic Rank 4** behaviour from a verified spell; **27051 must not be mapped as Vanilla** (TBC/WotLK variant) |
+| ENG-14 | CMaNGOS preset versus historically documented min level | No rank eligibility follows its eight divergent bot levels without primary DBC confirmation |
+| ENG-15 | Great Stamina old trainer passive versus WotLK percent aura | Original **flat Stamina rank** restored once, not an unrelated WotLK **+8%** effect; client tooltip accurately reflects it |
+| ENG-16 | Spell IDs for all 59 wild and 52 trainer rank entries | Original patch/build mapping plus exact 3.3.5 server/client row confirmed; missing/conflicting mappings cannot activate |
 
 ## F. Loyalty, happiness, food and progression
 
