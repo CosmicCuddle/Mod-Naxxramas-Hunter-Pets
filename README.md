@@ -33,6 +33,8 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 ### Engineering, compatibility and safety
 - [Technical feasibility](docs/TECHNICAL-FEASIBILITY.md) — what source proves, what remains unproven module-only.
 - [Engine source audit](docs/ENGINE-SOURCE-AUDIT.md) — AzerothCore hooks and classic CMaNGOS comparison references.
+- [Source-pinned pet lifecycle and hook ordering](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) — exact public source file blobs/lines for tame, async load, auto-learn, level sync, spell-hit and native save.
+- [16-event lifecycle trace (CSV)](data/reference/public-core-pet-lifecycle-events.csv) — source, stage ordering, event risks, API hook and expected test.
 - [Behavioural state machines](docs/STATE-MACHINES.md) — tame, cast-to-learn, train, loyalty, stable, progression and owner isolation.
 - [Persistence, native pet API and migrations](docs/PERSISTENCE-AND-API.md) — proposed module-owned tables, concurrency, idempotence, saved spells, rollback.
 - [IP, Playerbots and Naxx Core interoperability](docs/IP-PLAYERBOTS-INTEROPERABILITY.md) — actual Hunter-era gating, Alt/Random bots, raid AI, strict upstream isolation.
@@ -60,6 +62,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 | [`data/reference/vanilla-pilot-spell-effects.csv`](data/reference/vanilla-pilot-spell-effects.csv) | **13** priority ability effect test fixtures (Bite, Claw, Screech, LB6, Furious Howl etc.) | Effect values sourced from Classic references; **zero original/client/server DBC runtime mapping** |
 | [`data/reference/vanilla-trainer-spell-id-candidates.csv`](data/reference/vanilla-trainer-spell-id-candidates.csv) | **52** trainer-rank ID/effect candidates, including **5 disputed resistances** | 47 **likely** Vanilla trainer ranks, five not offered according to multiple historic reconstructions; no DBC proof yet |
 | [`data/reference/vanilla-all-rank-id-candidate-crosswalk.csv`](data/reference/vanilla-all-rank-id-candidate-crosswalk.csv) | **111** joined wild + trainer candidate IDs, risk tags and strict evidence fields | **Do not import into runtime**; every record still requires original/deployed DBC verification |
+| [`data/reference/public-core-pet-lifecycle-events.csv`](data/reference/public-core-pet-lifecycle-events.csv) | **16** critical tame/load/level/spell/save events with public source lines and call-order | Public upstream **file-blob** proof only, **no live module feasibility or installed revision confirmation** |
 
 **Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. **Five resistance Rank 5 rows may not have been available in original Vanilla**, leaving 106 possible in-era rank records, of which two wild ranks lack a known tame source. Exact trainer availability and original DBC remain unverified. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
 
