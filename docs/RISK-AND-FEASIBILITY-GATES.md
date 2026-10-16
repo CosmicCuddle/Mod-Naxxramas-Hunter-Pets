@@ -39,6 +39,12 @@
 | R-28 | High | IP's GroupScript may synchronise bot progression to leader on joining, without changing bot level | Re-evaluate owner era on authoritative stage change; never wipe pet skills/ledger to transition |
 | R-29 | **Critical** | Legacy IP without exported public header cannot be safely understood from modern hidden quest fallback | No automatic Vanilla pet mutation until exact installed legacy reader validated |
 | R-30 | High | Effective `hasPassedProgression` honours IP `ProgressionLimit`; raw rewarded quests and `.ip get` may differ under cap | Test cap/era transitions; trust installed API semantics not one raw quest number |
+| R-31 | **Critical** | `Pet::addSpell` loading invalid saved ID runs `CHAR_DEL_INVALID_PET_SPELL`, which **DELETEs pet_spell WHERE spell=? globally** | Never inject unverified historic IDs into native pet tables; validate against 3.3.5 SpellStore; backup character DB before staging |
+| R-32 | High | `Pet::addSpell` immediately casts passive pet spells and inserts active spells into action bar | Active cast denial does not reverse passive effects or client action bar; strict Vanilla training remains blocked without supported interception |
+| R-33 | High | Native `PETSPELL_FAMILY` ranks are regenerated from family data, but not saved to `pet_spell` | A DB-only removal cannot permanently suppress default family passives; do not globally edit family DBC to fake resolution |
+| R-34 | High | `_SaveSpells` rewrites all native pet spells by **recyclable PetNumber**, while `removeSpell(...,true)` may restore previous rank | Historical ledger needs owner and generation/identity checks; no blind remove or backfill that can erase valuable pets |
+| R-35 | High | `ServerScript::CanPacketSend` vetoes **whole read-only packets**, and `OnPacketSent` is pre-send/possibly no socket | Use observer for safe diagnostics only; never suppress full pet spellbook and call it authentic client UI repair |
+
 
 
 Evidence: [source-pinned lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md), [16-event data](../data/reference/public-core-pet-lifecycle-events.csv), [auto-grant feasibility verdict](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) and [16 candidate interceptions](../data/reference/auto-spell-interception-candidates.csv). All implementation verdicts remain **NOT PROVEN** until exact deployed source revision and staging tests.
