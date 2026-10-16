@@ -2,13 +2,17 @@
 
 **Research only — not runtime rules.** Different evidence sources can disagree because of original patch changes, Classic Era reimplementations, datamining omissions, accidental NPC bugs, out-of-era trainer availability or simply an incomplete community list.
 
-## Conflict C-001: How many Vanilla Hunter pet ranks?
+## Conflict C-001: Why 111 rank records but perhaps only 106 original Vanilla ranks?
 
-- Our initial [Petopia-based reference table](../data/reference/vanilla-ability-ranks.csv) enumerates **111 rank records** for **21 abilities**, including ranks with no documented tame source.
-- The independent [PetTips Classic addon](https://github.com/entrail/PetTips) README reports **21 abilities, 106 rank records and 297 teaching beasts**. Its author describes reconciling Petopia and client ability/trainer datasets, but it targets **Classic Era 1.15**, **not original 2006 patch 1.12 or our AzerothCore 3.3.5a client**.
-- Difference: **five rank records**. This is a **documented research discrepancy**, not proof that five particular ranks should be removed, and not permission to copy a third-party dataset to see what fits.
+- The [Petopia-based 111-row catalogue](../data/reference/vanilla-ability-ranks.csv) currently contains **59 wild ranks and 52 trainer ranks** across 21 ability names.
+- The five excess rows appear to be **Rank 5 of Arcane, Fire, Frost, Nature and Shadow Resistance**. [Petopia's own 2019 maintainer audit](https://forums.wow-petopia.com/viewtopic.php?t=26093) says these could not be found on Classic trainers and might have been introduced during early Burning Crusade, despite being shown on its reference page.
+- [Warcraft Wiki Arcane](https://warcraft.wiki.gg/wiki/Arcane_Resistance_(pet_ability)) and [Frost](https://warcraft.wiki.gg/wiki/Frost_Resistance_(pet_ability)) explicitly distinguish **four original Vanilla ranks** from **five Burning Crusade ranks**, corroborated by [archived Classic Hunter pet ability summaries](https://classic-wow-archive.fandom.com/wiki/Hunter_pet_abilities).
+- A prior [PetTips GitHub README](https://github.com/entrail/PetTips) listed **106 ranks** (111−5). Its current [CurseForge description](https://www.curseforge.com/wow/addons/pettips) has reported 111. **Third-party count metadata is version-dependent**; neither can serve as original 1.12 proof, and the PetTips license restricts copying its dataset.
+- The [archived CMaNGOS spell chains](https://github.com/cmangos/mangos-classic/blob/master/sql/archive/0.7/4096_pet.sql) contain all five disputed 2705x IDs, but **also contain confirmed later-expansion ranks**. A database entry is not proof of a trainer offering or original retail client compatibility.
 
-**Required reconciliation method:** independently enumerate every Vanilla rank from original client/skill-line evidence and authoritative patch references. Match by canonical ability, rank number, source availability, training-point cost, pet family and spell ID, comparing historical version. Produce a row-by-row delta with source citations and a decision for inclusion/exclusion, *not* a forced 106 or 111 target. Preserve ranks that exist but are unobtainable where historically justified.
+**Proposed strict late-Vanilla interpretation, NOT owner-approved:** 59 wild-rank records + **47 trainer rank records** = **106 possible in-era rank records**. Two separate wild ranks have no known natural teaching source (Lightning Breath 1 and Charge 4), so **106 does not mean 106 naturally obtainable ranks**.
+
+**Resolution still required:** a genuine **1.12.1.5875** Spell/SkillLineAbility DBC inspection and original-patch trainer offerings, including trainer wrapper IDs. Retain all 111 rows with historical status flags until conclusively resolved. See [complete trainer report](COMPLETE-TRAINER-RANK-RESEARCH.md).
 
 ## Conflict C-002: Rank exists, no known source
 
