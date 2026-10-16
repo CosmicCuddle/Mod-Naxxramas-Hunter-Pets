@@ -11,6 +11,16 @@
 - No assumed client DBC patch, custom executable, or rewritten packet handler.
 - Strict configuration off by default, exact IP-era gating, optional bot gating, verbose diagnostic mode with rate limiting.
 
+## Precise lifecycle proof and limitations
+
+See [source-pinned Hunter pet lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) and the [16-event call-order CSV](../data/reference/public-core-pet-lifecycle-events.csv) for upstream file blob hashes, lines and read-only evidence. In particular:
+
+- **OnPetAddToWorld is not universally a 'pet ready' event.** It fires after initial WotLK skill init on a new tame, but before asynchronously restored spells on an existing summon. This increases the difficulty of correctly replacing native auto ranks **module-only**.
+- Native **tame and summon both apply WotLK owner−5 level catchup**. Original wild-level/XP retention is a *second hard gate*; its correction must work for an initially tamed pet, stable, relog and IP transitions.
+- **Native pet persistence spans at least two separately committed transactions**; module-owned loyalty and training tables require explicit crash-reconciliation design rather than an unsupported 'atomic with native SavePetToDB' guarantee.
+- In inspected `Spell.cpp`, instant casts may have already executed effects before global `OnSpellCast`, while delayed projectiles may not yet have hit. A successful owner-pet use may require a dedicated `SpellScript::AfterHit`/effect hook, if module registration safely supports the rank.
+- These facts are based on current **public** source snapshots, **not the user's compiled game server or DB**.
+
 ## Confirmed source observations
 
 AzerothCore upstream paths (not necessarily identical to deployed revision):
