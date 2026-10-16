@@ -58,19 +58,23 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 | [`data/reference/requirement-traceability.csv`](data/reference/requirement-traceability.csv) | **54** requirement links joining historical sources → developer WP → acceptance QA → decision | All implementation statuses NOT_STARTED, feasibility NOT_PROVEN |
 | [`data/reference/vanilla-wild-spell-id-candidates.csv`](data/reference/vanilla-wild-spell-id-candidates.csv) | **59** wild ability-rank IDs from independent Classic emulator code | **Research candidates only:** no original 1.12 or deployed 3.3.5 DBC proof; explicit conflict flags |
 | [`data/reference/vanilla-pilot-spell-effects.csv`](data/reference/vanilla-pilot-spell-effects.csv) | **13** priority ability effect test fixtures (Bite, Claw, Screech, LB6, Furious Howl etc.) | Effect values sourced from Classic references; **zero original/client/server DBC runtime mapping** |
+| [`data/reference/vanilla-trainer-spell-id-candidates.csv`](data/reference/vanilla-trainer-spell-id-candidates.csv) | **52** trainer-rank ID/effect candidates, including **5 disputed resistances** | 47 **likely** Vanilla trainer ranks, five not offered according to multiple historic reconstructions; no DBC proof yet |
+| [`data/reference/vanilla-all-rank-id-candidate-crosswalk.csv`](data/reference/vanilla-all-rank-id-candidate-crosswalk.csv) | **111** joined wild + trainer candidate IDs, risk tags and strict evidence fields | **Do not import into runtime**; every record still requires original/deployed DBC verification |
 
-**Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
+**Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. **Five resistance Rank 5 rows may not have been available in original Vanilla**, leaving 106 possible in-era rank records, of which two wild ranks lack a known tame source. Exact trainer availability and original DBC remain unverified. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
 
 ## Historical references — research first
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [50-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [60-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
-- [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 trainer ranks; all awaiting runtime validation.
+- [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 *listed* trainer ranks (**five resistance Rank 5s are historically disputed**); all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — rank-count and spell-ID mismatches, out-of-era spell variants, original vs Classic bugs, and data reuse restrictions.
 - [Wild spell-ID and effect audit](docs/SPELL-ID-AND-EFFECT-RESEARCH.md) — all **59** wild ranks have research-only candidate IDs; **eight level mismatches** and the out-of-era Screech 27051 found.
 - [Trainer spell reference pilot](docs/TRAINER-SPELL-IDENTITY-REFERENCE.md) — highlights old flat +Stamina versus modern percent-aura and nonfree Focus cost for 0-TP Growl.
+- [Full 52-rank trainer research](docs/COMPLETE-TRAINER-RANK-RESEARCH.md) — all 8 trainer ability lines, 52 candidate spell IDs and the **5 disputed resistance Rank 5** entries.
+- [Original 1.12 vs deployed 3.3.5 DBC comparison protocol](docs/ORIGINAL-DBC-AND-DEPLOYED-COMPARISON.md) — reproducible, read-only original data and server/client verification steps.
 - [13 priority spell-effect fixtures](data/reference/vanilla-pilot-spell-effects.csv) — rank, candidate IDs, spell-effect numbers and the full original+3.3.5 DBC proof gates.
 - [Read-only world/character DB audit](docs/READ-ONLY-SERVER-DATA-AUDIT.md) — safe template/spawn/schema verification procedure before any future implementation.
 
