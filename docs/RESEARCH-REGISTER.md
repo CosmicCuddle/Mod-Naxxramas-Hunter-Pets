@@ -41,6 +41,13 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## Engine event-order and module-only hard gates — public source audit
+
+- [Source-pinned pet lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) and [16-event call-order index](../data/reference/public-core-pet-lifecycle-events.csv): new tame spell init **before** OnPetAddToWorld, existing pet async saved-spell load **after** OnPetAddToWorld, WotLK auto pet level catchup in tame/load, and native pet save split into independently committed transactions.
+- [Public Individual Progression source](https://github.com/ZhengPeiRu21/mod-individual-progression/blob/master/src/IndividualProgressionPlayer.cpp) still awards capped level-60 Hunters' pets kill-XP in `OnPlayerGiveXP`, then sets the player's XP to zero. This creates a possible **double/missed pet XP** integration risk if a second module tries to restore authentic Vanilla pet growth. Installed IP revision and exact bots remain unverified.
+- **No safe generic CanLearnPetSpell veto** was found in the inspected public `PetScript.h`; `OnPetAddToWorld` cannot be assumed a complete 'pet ready after DB spells' hook. **No module-only solution has been demonstrated**.
+- 3.3.5 `SpellScript` exposes per-target `AfterHit` and `OnEffectHitTarget` hooks worth evaluating; these are only **promising discovery-logic candidates**, not proof of successful learning.
+
 ## Trainer-rank research — all 52 candidates indexed
 
 - [Complete pet trainer rank reference](COMPLETE-TRAINER-RANK-RESEARCH.md) now covers all **52** initially enumerated trainer ranks and expected Growl, Great Stamina, Natural Armor and school-resistance values, linked to [52-row candidate spell-ID CSV](../data/reference/vanilla-trainer-spell-id-candidates.csv).
