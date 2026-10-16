@@ -101,6 +101,9 @@
 | ENG-25 | Crash after native aura/spell commit and before pet-info commit / module ledger commit | No lost valuable pet, duplicated rank, broken stable slot or silent TP divergence; reconciliation idempotent |
 | ENG-26 | Cast-trigger vs actual impact for wild rank discovery | Interrupted, immune, miss, projectile delayed hit, triggered and periodic effects do not accidentally grant a permanent Hunter-known rank |
 | ENG-27 | New tame source and pet identity after stable/relog | Native CreatureId, unique PetNumber and visual source persist, including rare model; no inference from nearby NPC |
+| ENG-28 | IP-capped human level-60 Hunter killing monsters with original low-level pet | Pet receives the intended XP exactly **once** although human XP capped; no double payment or missed XP through IP `OnPlayerGiveXP` |
+| ENG-29 | Capped Random Playerbot / Alt Bot pet XP handoff | Correct account-specific IP branch, legal pet level, no bleed into human/other bots, no duplicate XP |
+
 
 
 
