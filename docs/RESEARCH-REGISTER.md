@@ -48,6 +48,13 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
 - [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
 
+## WotLK automatic grant source and DBC comparison — no deployed spell IDs yet
+
+- [Exact three-path source comparison](WOTLK-AUTO-GRANT-DBC-COMPARISON.md) documents (1) family level-up `SpellLevel>0`, (2) creature PetSpellDataId/defaults, and (3) `SpellLevel=0` family passives. All filter rules are grounded in public source, **not in the user's exact 3.3.5 DBC**.
+- [21-ability source crosswalk](../data/reference/wotlk-versus-vanilla-ability-audit.csv) groups 111 historic rank records, keeping three independent **UNVERIFIED** grant fields. [17-family audit](../data/reference/wotlk-family-auto-grant-audit.csv) separately tracks 335 family ID, skill line IDs and actual passives.
+- Public AzerothCore **base** `creaturefamily_dbc`, `skilllineability_dbc` and `creaturespelldata_dbc` SQL files are schema-only (**zero INSERT rows**). `DBCStores::LoadDBC` loads actual binary DBC then optional SQL-supplied rows. Thus *neither* blank base SQL nor a CMaNGOS Classic candidate ID proves a native 3.3.5 spell is present/absent.
+- Research index expanded to **104 cited technical/historical sources**. No DBC/SQL/server binary input was made available, and **no automatic spell IDs have been fabricated or marked runtime-proven**.
+
 ## Native pet spell database and outgoing packet safety — new source finding
 
 - [Full source-pinned spell grant/packet/DB safety audit](PET-SPELL-GRANT-PACKET-DB-SAFETY-AUDIT.md) explains native `Pet::addSpell` immediate passive casts, action-bar updates, rank upgrades, actual packet hook semantics and family passives regenerated on load.
