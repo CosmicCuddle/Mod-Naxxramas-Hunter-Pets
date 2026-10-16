@@ -148,7 +148,19 @@ A separate module ledger transaction could be a **third** independent commit. Th
 | L-07 | Stats hook after attack speed normalization | Rare swing restoration plausible | **Pending speed and DPS proof** |
 | L-08 | Original 1.12/client spell effect compatibility unknown | Same name/ID may have changed effect | **Blocked until DBC verified** |
 
-## 9. Precise next developer actions — read-only, then only approved disposable staging
+## 9. Related Individual Progression source cross-check
+
+A read-only inspection of [`src/IndividualProgressionPlayer.cpp`](https://github.com/ZhengPeiRu21/mod-individual-progression/blob/master/src/IndividualProgressionPlayer.cpp), **public blob SHA `e3c5f1781885a4f2ded5b135d2cf4c96467cd9da`**, lines **116–159**, shows an additional interaction with pet levelling:
+
+- `OnPlayerGiveXP` handles capped bot accounts and normal accounts separately.
+- For a **normal human account at level 60 that has not passed `PROGRESSION_PRE_TBC`**, it calls `pet->GivePetXP(...)` **for kill-sourced XP** and then sets the player's XP award to zero.
+- Capped bot accounts have their own `BotAccountsMaxLevel` check and pet XP side path.
+- For normal post-Vanilla / pre-next-cap characters at level 70 it has another pet XP handoff.
+- These are **current public Individual Progression source observations**, not proof the user's deployed IP revision is identical or that all Playerbot accounts follow the same rules.
+
+**Implication:** restoring a level-20 original tame to a level-60 Vanilla Hunter must preserve the expected XP journey even while player XP is capped. Any module-own XP adjustment must account for the installed IP `OnPlayerGiveXP` handoff so the pet is not deprived of XP or awarded it twice. A read-only audit of IP stage API and exact deployed modules is mandatory before a change; **no upstream IP modification is allowed**.
+
+## 10. Precise next developer actions — read-only, then only approved disposable staging
 
 ### Read-only Stage A (can be planned immediately)
 - Pin exact deployed core, IP, Playerbots, Naxx Core SHAs and pet DB schema. Compare this public blob audit to **installed build**. Note if branch-specific modules already intercept these operations.
