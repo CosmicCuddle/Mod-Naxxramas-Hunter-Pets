@@ -36,6 +36,10 @@ One future module-owned eligibility function should:
 
 **Critical strict-fidelity blocker unchanged:** Pet.cpp calls Pet::learnSpell during new tame, level-up and async pet load. The client may receive unauthorized ranks before any after-load reconciliation; passives and pet action bar may also change. IP's UnitScript/output scaling and OnPlayerSpellCast do not prevent this. No modification of global SpellMgr maps, core Pet.cpp or IP source permitted. See [auto-learning feasibility decision](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md).
 
+## Naxx Core integration precedent found after initial IP source audit
+
+The existing Naxx Core [MeetingStoneProgression.cpp](https://github.com/CosmicCuddle/Mod-Naxxramas-Core/blob/main/src/Systems/MeetingStoneProgression.cpp) already recognises **modern and legacy** IP public header stage semantics; [BotTalentImport.cpp](https://github.com/CosmicCuddle/Mod-Naxxramas-Core/blob/main/src/Systems/BotTalentImport.cpp) uses **human issuer** milestone rather than pet owner; IP [GroupScript](https://github.com/ZhengPeiRu21/mod-individual-progression/blob/master/src/IndividualProgressionPlayer.cpp) can synchronise bots to the human party leader. These discoveries are fully documented in [IP-stage adapter design](IP-STAGE-ADAPTER-DESIGN.md), the [22 test-case matrix](../data/reference/ip-pet-owner-era-acceptance-matrix.csv) and [read-only inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md). All remain public-source references, **not proof of installed runtime behavior**.
+
 ## Read-only and later approval-gated verification
 
 - **IP-H01:** Pin deployed IP SHA, config and stage API, find old HunterPetLevelFix (if any) in actual *installed* files; verify no assumptions based on historical config.
