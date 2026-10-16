@@ -41,6 +41,12 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## Creature-to-rank research progress
+
+- [Tame-source atlas](TAME-ABILITY-SOURCE-ATLAS.md): **141** curated Classic Petopia beast/ability/rank reference rows. Coverage: **57** of 59 wild-rank combinations with examples; **two** with no known wild source. Candidate NPC IDs only for six named beasts; no deployed AC/IP/client validation.
+- [Rank-by-rank coverage status](../data/reference/vanilla-rank-source-coverage.csv): distinguishes trainer skills, sampled wild skill sources, historically unknown wild sources and remaining runtime mapping tasks.
+- [Reference conflicts and data licensing](REFERENCE-SOURCE-CONFLICTS.md): independent 111 vs 106 rank count, caster-pet stat discrepancy, Claw/Crocolisk source anomaly, and constraints on reuse of PetTips data.
+
 ## Known examples for verification, not yet authoritative implementation data
 
 - **Son of Hakkar:** Lightning Breath Rank 6 as a tame-discovered rank, transferable to eligible Wind Serpents after Hunter learning.
