@@ -2,6 +2,19 @@
 
 **Inspected:** source in upstream public repositories during planning on 16 October 2026. The live realm's compiled commits may differ. This document records where developers should inspect; no changes to upstream repositories are allowed.
 
+## Source-pinned event order — new findings
+
+The [exact file-blob audited lifecycle](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) and [16-event CSV](../data/reference/public-core-pet-lifecycle-events.csv) now supply the concrete tame, level, summon/stable, spell cast and save call order. Major observations:
+
+1. **New tame:** Tame Beast → CreateTamedPetFrom → native WotLK pet-level catchup (`max(beast level, Hunter−5)`) → `InitPetCreateSpells` → `InitLevelupSpellsForLevel` → **then** `OnPetAddToWorld` → native save. OnAdd is **after** auto-granted skills on this path.
+2. **Existing pet:** `LoadPetFromDB` → `SynchronizeLevelWithOwner` (same −5 catchup) → **`OnPetAddToWorld`** → **asynchronous** `_LoadSpells` and `InitLevelupSpellsForLevel` → pet spellbook/client packet. OnAdd is **before** saved spells and auto-granted skills on this path.
+3. **Level-up:** `GivePetLevel` → `InitStatsForLevel` → `InitLevelupSpellsForLevel` → `InitTalentForLevel`. No generic `CanLearnPetSpell` hook found in inspected `PetScript`.
+4. **Native save:** `SavePetToDB` saves aura/spells/cooldowns in one committed transaction and pet main identity/slot in another. A module-owned ledger would add another independently committed unit unless an explicit integration strategy is proven.
+5. **Successful use:** global `AllSpellScript::OnSpellCast` cannot by itself prove target impact for every projectile/periodic/immune spell; `SpellScript` exposes `AfterHit`/effect target hooks, requiring ability-specific proof.
+6. **Rare swing:** `Guardian::InitStatsForLevel` overwrites Hunter attack time to `BASE_ATTACK_TIME` and invokes `OnInitStatsForLevel` **before** `UpdateAllStats`; override is plausible but must survive subsequent recalculation.
+
+These findings are **public source facts only**. No compiled live worldserver SHA, installed IP module, or deployed client DBC has been checked.
+
 ## AzerothCore 3.3.5a — primary target
 
 | Location / symbol | Observed behaviour | Design implication |
