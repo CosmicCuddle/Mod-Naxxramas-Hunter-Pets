@@ -35,13 +35,14 @@ Naxxramas Core already handles bot talents and consumables, including Hunter pet
 
 ## Reading order for the implementation team
 
-1. This handover — goals, decisions, forbidden changes.
-2. [Vanilla feature specification](VANILLA-FEATURE-SPEC.md) — complete target inventory and acceptance criteria.
-3. [Technical feasibility](TECHNICAL-FEASIBILITY.md) — source findings, module-only hooks, architectural risks.
-4. [Implementation roadmap](IMPLEMENTATION-ROADMAP.md) — audit, feasibility gates, estimates, staged development.
-5. [Test and rollback plan](TEST-AND-ROLLBACK.md) — how to validate without damaging live pets.
-6. [Research register](RESEARCH-REGISTER.md) — source links, unknowns and historical-data provenance.
-7. [Decision log](DECISIONS.md) — what is agreed, proposed and still open.
+**For a future editor, start with [DEVELOPER-START-HERE.md](DEVELOPER-START-HERE.md) and [BLUEPRINT.md](BLUEPRINT.md).** The master blueprint is now the design index and the root README provides full navigation.
+
+1. This handover + [decisions](DECISIONS.md): agreements and forbidden changes.
+2. [Master blueprint](BLUEPRINT.md), [Vanilla specification](VANILLA-FEATURE-SPEC.md), [all families](VANILLA-FAMILY-REFERENCE.md), [ability/rank catalogue](ABILITY-CATALOG.md), [special beasts](RARE-AND-SPECIAL-BEASTS.md): the *desired gameplay*.
+3. [Source audit](ENGINE-SOURCE-AUDIT.md), [technical feasibility](TECHNICAL-FEASIBILITY.md), [risk gates](RISK-AND-FEASIBILITY-GATES.md): the *hard module-only blockers*.
+4. [State machines](STATE-MACHINES.md), [persistence and API](PERSISTENCE-AND-API.md), [IP/bot interoperability](IP-PLAYERBOTS-INTEROPERABILITY.md), [player-facing UI](PLAYER-EXPERIENCE-AND-UI.md): the *proposed architecture*.
+5. [QA matrix](QA-ACCEPTANCE-MATRIX.md), [testing/rollback](TEST-AND-ROLLBACK.md), [roadmap](IMPLEMENTATION-ROADMAP.md): the *evidence, staging and release gates*.
+6. [Reference bibliography](REFERENCE-BIBLIOGRAPHY.md), [research register](RESEARCH-REGISTER.md), machine-readable `../data/reference/*.csv`: provenance and gaps. **All datasets are research-only, not verified native 3.3.5 mappings**.
 
 ## Development handoff contract
 
