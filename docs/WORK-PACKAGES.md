@@ -14,6 +14,8 @@ This file converts the [unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROA
 
 **Current:** PLANNED. **Type:** read-only research, safe to assign before implementation approval. **Dependencies:** access to deployed revisions and schema.
 
+**New source-pinned priority (16 October 2026):** see [Pet lifecycle source trace](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md). A newly tamed pet gets WotLK Hunter−5 catch-up **before** OnPetAddToWorld; existing pet OnPetAddToWorld fires **before asynchronous saved-spell load and auto-grant**. Native pet data and spells save in separate transactions. All three must receive explicit feasibility verdicts, not merely be flagged as vague risks.
+
 **Questions:** Which pet operations are native? Who saves what? Where do Core, IP, Playerbots and Naxx Core mutate pet levels/spells/talents? Which scripts can observe these transitions? Are existing DBC skills fully compatible?
 
 **Deliverables:**
@@ -53,7 +55,7 @@ This file converts the [unified blueprint and roadmap](UNIFIED-BLUEPRINT-AND-ROA
 
 **Current:** PLANNED. **Type:** research then permission-gated experimental spike. **Dependencies:** WP-00.
 
-**Core question:** `InitLevelupSpellsForLevel` unconditionally teaches family/default ranks on several paths. Can all automatic WotLK skill grants be prevented **only inside module APIs**? Are pet talent trees and old abilities accessible in the 3.3.5 client?
+**Core question:** `InitLevelupSpellsForLevel` unconditionally teaches family/default ranks on several paths. **Current public PetScript has no generic learn-veto and no proven after-native-async-spells-loaded hook**; OnPetAddToWorld is early on an existing pet. Explore and prove a proper module-only event bridge, not a patch that silently strips spells whenever convenient. Can all automatic WotLK skill grants be prevented **only inside module APIs**? Are pet talent trees and old abilities accessible in the 3.3.5 client?
 
 **Protocol:** instrument controlled test (only after approval), reproduce level-up, initial tame, logon, summon, stable, pet respec, client spell packet/action bar update, server restart. Document every automatic grant path and safe interception order. Compare exact PetScript hooks, not only their names.
 
