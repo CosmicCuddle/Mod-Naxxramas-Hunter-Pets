@@ -64,6 +64,9 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
 - [32-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
+- [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 trainer ranks; all awaiting runtime validation.
+- [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — independent count mismatch, original vs Classic bugs, and data reuse restrictions.
 
 ## Research coordination
 
