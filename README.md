@@ -34,6 +34,8 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Technical feasibility](docs/TECHNICAL-FEASIBILITY.md) — what source proves, what remains unproven module-only.
 - [Engine source audit](docs/ENGINE-SOURCE-AUDIT.md) — AzerothCore hooks and classic CMaNGOS comparison references.
 - [Source-pinned pet lifecycle and hook ordering](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) — exact public source file blobs/lines for tame, async load, auto-learn, level sync, spell-hit and native save.
+- [Auto spell-learning module-only feasibility decision](docs/AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) — exact global DBC-derived grant path, scope-aware cast-denial candidate, and why neither late reconciliation nor a global override proves full Vanilla fidelity.
+- [WP-03 disposable staging protocol](docs/WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md) — permission-gated, backup-first, logging-only sequence then approval-specific experiments, packet-state/crash controls and GO/NO-GO criteria.
 - [16-event lifecycle trace (CSV)](data/reference/public-core-pet-lifecycle-events.csv) — source, stage ordering, event risks, API hook and expected test.
 - [Behavioural state machines](docs/STATE-MACHINES.md) — tame, cast-to-learn, train, loyalty, stable, progression and owner isolation.
 - [Persistence, native pet API and migrations](docs/PERSISTENCE-AND-API.md) — proposed module-owned tables, concurrency, idempotence, saved spells, rollback.
@@ -63,6 +65,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 | [`data/reference/vanilla-trainer-spell-id-candidates.csv`](data/reference/vanilla-trainer-spell-id-candidates.csv) | **52** trainer-rank ID/effect candidates, including **5 disputed resistances** | 47 **likely** Vanilla trainer ranks, five not offered according to multiple historic reconstructions; no DBC proof yet |
 | [`data/reference/vanilla-all-rank-id-candidate-crosswalk.csv`](data/reference/vanilla-all-rank-id-candidate-crosswalk.csv) | **111** joined wild + trainer candidate IDs, risk tags and strict evidence fields | **Do not import into runtime**; every record still requires original/deployed DBC verification |
 | [`data/reference/public-core-pet-lifecycle-events.csv`](data/reference/public-core-pet-lifecycle-events.csv) | **16** critical tame/load/level/spell/save events with public source lines and call-order | Public upstream **file-blob** proof only, **no live module feasibility or installed revision confirmation** |
+| [`data/reference/auto-spell-interception-candidates.csv`](data/reference/auto-spell-interception-candidates.csv) | **16** candidate auto-rank interception paths, actual APIs and strict-vs-compromise status | Global map overrides rejected, per-pet veto absent in reviewed public sources; no runtime proof |
 
 **Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. **Five resistance Rank 5 rows may not have been available in original Vanilla**, leaving 106 possible in-era rank records, of which two wild ranks lack a known tame source. Exact trainer availability and original DBC remain unverified. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
 
@@ -70,7 +73,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [69-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [78-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
 - [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 *listed* trainer ranks (**five resistance Rank 5s are historically disputed**); all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — rank-count and spell-ID mismatches, out-of-era spell variants, original vs Classic bugs, and data reuse restrictions.
@@ -89,6 +92,8 @@ The [source-pinned pet lifecycle audit](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.m
 - `PetScript` provides no generic CanLearnPetSpell veto in the inspected public interface.
 - Native pet saving uses multiple transactions; loyalty/TP module persistence needs crash-safe reconciliation.
 - Public Individual Progression includes capped-level pet-XP handoff; original Vanilla tame-level/XP restoration must not duplicate or suppress it.
+
+**New (16 October 2026):** [WP-03 research](docs/AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) shows global skill map is built from 3.3.5 DBC and offers no public per-owner filter. `AllSpellScript::OnSpellCheckCast` may **block active casts** but not passive effects or temporary client spell packets; `Pet::isBeingLoaded()` becomes false **after** `PetSpellInitialize` on existing-pet load. Full authentic manual training remains **NOT PROVEN**; don't present a cast-denial workaround as strict Vanilla restoration.
 
 **All remain unproven on the deployed realm.** Do not claim a working module-only solution or install any data based on these findings. See [Stage 0 research issue #1](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/1).
 
