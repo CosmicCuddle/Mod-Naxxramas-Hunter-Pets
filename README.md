@@ -70,7 +70,7 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 
 - [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
 - [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
-- [60-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
+- [69-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 - [Tame & ability-source atlas](docs/TAME-ABILITY-SOURCE-ATLAS.md) — initial **141 sourced beast-to-skill-rank relationships** across 13 wild-learned abilities, with six independently referenced candidate NPC IDs.
 - [Rank source coverage](data/reference/vanilla-rank-source-coverage.csv) — **57 candidate-source rank combinations**, two explicitly without known tame source, plus 52 *listed* trainer ranks (**five resistance Rank 5s are historically disputed**); all awaiting runtime validation.
 - [Reference conflicts and licensing](docs/REFERENCE-SOURCE-CONFLICTS.md) — rank-count and spell-ID mismatches, out-of-era spell variants, original vs Classic bugs, and data reuse restrictions.
@@ -80,6 +80,17 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 - [Original 1.12 vs deployed 3.3.5 DBC comparison protocol](docs/ORIGINAL-DBC-AND-DEPLOYED-COMPARISON.md) — reproducible, read-only original data and server/client verification steps.
 - [13 priority spell-effect fixtures](data/reference/vanilla-pilot-spell-effects.csv) — rank, candidate IDs, spell-effect numbers and the full original+3.3.5 DBC proof gates.
 - [Read-only world/character DB audit](docs/READ-ONLY-SERVER-DATA-AUDIT.md) — safe template/spawn/schema verification procedure before any future implementation.
+
+## Current module-only feasibility frontier
+
+The [source-pinned pet lifecycle audit](docs/SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) confirms on **public upstream** (not the owner's installed build) that:
+- A **new tame** first gets WotLK Hunter−5 level adjustment and automatic pet ranks **before** the pet is added to the world.
+- An **existing pet** triggers `OnPetAddToWorld` **before** asynchronously loading saved native spells, granting family/passive/level ranks and updating the client. Thus the AddToWorld hook cannot be trusted as a post-load reconcile point.
+- `PetScript` provides no generic CanLearnPetSpell veto in the inspected public interface.
+- Native pet saving uses multiple transactions; loyalty/TP module persistence needs crash-safe reconciliation.
+- Public Individual Progression includes capped-level pet-XP handoff; original Vanilla tame-level/XP restoration must not duplicate or suppress it.
+
+**All remain unproven on the deployed realm.** Do not claim a working module-only solution or install any data based on these findings. See [Stage 0 research issue #1](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/1).
 
 ## Research coordination
 
