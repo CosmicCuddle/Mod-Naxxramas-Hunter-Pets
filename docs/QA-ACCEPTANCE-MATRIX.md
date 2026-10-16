@@ -155,6 +155,18 @@
 | ENG-79 | Great Stamina original flat aura versus WotLK percentage talent | Aura effect type, actual Stamina and maximum HP verified after train/stable/reload without modifying WotLK talent or duplicating IP effects |
 | ENG-80 | Client tooltip, Focus and cooldown mismatch despite server effect correction | Partial numeric script success NOT accepted as complete Vanilla spell; document any unfixable display issue and seek explicit owner decision |
 | ENG-81 | Restored spell effects without strict native spell eligibility | Do not claim original Beast Training complete if unearned native WotLK spell is still learned, applied as passive or sent to client |
+| ENG-82 | Pet Focus cost via `SPELLMOD_COST` owner | Source shows `SpellInfo::CalcPowerCost` calls pet owner's Player `ApplySpellMod`; **specific aura and exact spell-only scope** still need proof |
+| ENG-83 | Pet spell/category cooldown via owner `SPELLMOD_COOLDOWN` | `Creature::AddSpellCooldown` correctly evaluates spell AND category recovery; no shared rank/category leftover or unsigned underflow |
+| ENG-84 | Manual pet cast versus AI autocast | Both `PetHandler::CheckPetCast` and `PetAI` paths observe same owner modifier, correct native Focus precheck/cooldown and no duplicate charge |
+| ENG-85 | SpellModifier family mask versus exact intended pet spell ID | No affected Hunter/non-pet spells, extra pet rank or unrelated family spell; exact 3.3.5 spell-family flags validated |
+| ENG-86 | `GlobalScript::OnIsAffectedBySpellModCheck` return semantics | `false` **forces affected** bypassing family mask, not vetoing; no broad false return or cross-module hook interference |
+| ENG-87 | Valid modifier aura and owner Player registration | Existing 3.3.5 valid spell/aura and supported module-only registration verified; no guessed DBC ID, native pet_spell insertion or global unsafe DB patch |
+| ENG-88 | Modern IP stage transition and bot group sync | Hunter owner at Vanilla 0–7 eligible only as approved; leave TBC/WotLK, unknown Random Bots and stale grouped bots untouched; tear down modifier cleanly |
+| ENG-89 | Owner aura persisted after dismissal/stable/logout and module disabled | Owner modifier does not remain after legal scope ends, and native pet spell/action bar/talents survive unchanged |
+| ENG-90 | Client cast cost and cooldown after server owner spellmod | Correct actual resource spend, cooldown packet, pet action bar and client presentation; mark reduced fidelity if text/tooltip still disagrees |
+| ENG-91 | Triggered pet casts with cost/CD ignore flags | No false success claim from triggered spells that bypass ordinary native power/cooldown checks; wild NPC unaffected |
+| ENG-92 | Furious Howl serial target-filter scripts | Public `Spell::CallScriptObjectAreaTargetSelectHandlers` passes one list sequentially; an additive script cannot assume it resurrects earlier removed party members or bypasses area validation |
+
 
 
 
