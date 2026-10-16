@@ -44,6 +44,7 @@
 | R-33 | High | Native `PETSPELL_FAMILY` ranks are regenerated from family data, but not saved to `pet_spell` | A DB-only removal cannot permanently suppress default family passives; do not globally edit family DBC to fake resolution |
 | R-34 | High | `_SaveSpells` rewrites all native pet spells by **recyclable PetNumber**, while `removeSpell(...,true)` may restore previous rank | Historical ledger needs owner and generation/identity checks; no blind remove or backfill that can erase valuable pets |
 | R-35 | High | `ServerScript::CanPacketSend` vetoes **whole read-only packets**, and `OnPacketSent` is pre-send/possibly no socket | Use observer for safe diagnostics only; never suppress full pet spellbook and call it authentic client UI repair |
+| R-36 | **Critical** | `CanUnlearnSpellSet` / `CanUnlearnSpellDefault` returning false for a too-high spell makes native conditional enter `else learnSpell` | Never repurpose unlearn-veto hooks as prevention of pet automatic learning; require a real pre-learn hook or STOP |
 
 
 
