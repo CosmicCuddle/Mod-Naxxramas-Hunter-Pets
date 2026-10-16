@@ -41,6 +41,15 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## Trainer-rank research — all 52 candidates indexed
+
+- [Complete pet trainer rank reference](COMPLETE-TRAINER-RANK-RESEARCH.md) now covers all **52** initially enumerated trainer ranks and expected Growl, Great Stamina, Natural Armor and school-resistance values, linked to [52-row candidate spell-ID CSV](../data/reference/vanilla-trainer-spell-id-candidates.csv).
+- **New important historical conflict:** five resistance **Rank 5s** are listed by Petopia but appear **not offered during late Vanilla**. Original Vanilla Wiki records four ranks versus five BC ranks; [Petopia maintainer investigation](https://forums.wow-petopia.com/viewtopic.php?t=26093) independently reports missing trainer offerings. **47** trainer ranks are the provisional strict Vanilla subset; **not yet verified with original 1.12 files**.
+- [111-rank combined research crosswalk](../data/reference/vanilla-all-rank-id-candidate-crosswalk.csv) now joins all **59 wild + 52 trainer** entries with provisional ID and risk. Five disputed Rank 5s remain clearly marked, **not deleted**; Charge 4 and Lightning Breath 1 separately have no known taming source.
+- [Original DBC ↔ actual 3.3.5 verification protocol](ORIGINAL-DBC-AND-DEPLOYED-COMPARISON.md) specifies lawful original 1.12.1.5875 DBC analysis, trainer wrapper spell checks, actual server+client DBC hashes and IP/Playerbot audits.
+- A read-only check of **public AzerothCore `spell_ranks.sql`** found **11 of 52** candidate trainer IDs in that SQL file. This **does not** test whether the other 41 IDs exist in real Spell.dbc. We have **not accessed the deployed core, acore_world, owner character database or game DBC**.
+- [CMaNGOS bug report #3817](https://github.com/cmangos/issues/issues/3817) reports stamina bonuses not increasing total HP in one emulator revision; this is a **test hypothesis**, not a finding on this server.
+
 ## Spell-ID research progress
 
 - [59 rank-by-rank wild spell candidates](../data/reference/vanilla-wild-spell-id-candidates.csv) were assembled as an **independent technical cross-check**, drawing from the CMaNGOS Classic Playerbot family mapping with Petopia as rank-level reference. All remain **unverified against original 1.12 and deployed 3.3.5 DBC**.
