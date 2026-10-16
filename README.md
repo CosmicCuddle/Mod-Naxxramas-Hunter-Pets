@@ -1,60 +1,81 @@
 # Mod-Naxxramas-Hunter-Pets
 
-> **Planning and feasibility stage — NOT an installable module.**
+> **FULL DEVELOPMENT BLUEPRINT — RESEARCH AND DESIGN ONLY**
 >
-> Experimental AzerothCore 3.3.5a project to restore the original **Vanilla Hunter pet experience**: meaningful beast taming, learn-by-use abilities, loyalty, happiness, feeding, training points, ranks, pet families and unique pet characteristics.
+> A standalone experimental AzerothCore 3.3.5a module project to recreate the **original Vanilla Hunter pet experience**. **No module C++, SQL migrations, client patch, compiled build, installation or in-game test has been performed through this planning work.**
 
-## Our goal
+## Vision
 
-Bring back the feeling that finding, taming and training the **right creature** actually matters. Different pets should have different historically grounded purposes—for raiding, PvP, farming and solo play—without arbitrary bonuses just because a beast is rare.
+Bring back the time when a Hunter's choice of **specific beast** meant something: original per-creature attack speeds, taming to discover and use new ability ranks, teaching different pets, pet trainer skills, loyalty and happiness, feeding, training points and four active skills, unique family strengths and meaningful rare/dungeon/raid beast hunts.
 
-Illustrations of intended research:
-- **Son of Hakkar:** acquire Lightning Breath Rank 6 by taming the right Wind Serpent and learning the skill through its use, then train another eligible pet.
-- **Broken Tooth:** restore and test its original 1.0-second attack cadence, with proper damage normalization.
-- **Every Vanilla pet:** examine original tame rules, source ability ranks, diet, happiness, six loyalty ranks, training-point budget, four-active-skill limit, pet family roles, stable interactions and pet XP.
+Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken Tooth** for 1.0-second attacks; **Bloodaxe Worg** for Bite 8, Dash 3 and Furious Howl 4; **Winterspring Screecher** for Claw 8 and Screech 4.
 
-**Era rule:** The Vanilla system stays active **through all Vanilla Individual Progression stages** until the character reaches TBC. **TBC and WotLK behaviour are intentionally undecided** and will be separately planned later.
+**Locked project direction:** Vanilla Hunter pet mechanics run across **every Vanilla Individual Progression stage**, up to the actual TBC-entry milestone. Design of later TBC/WotLK pet systems is deferred. Source implementation must remain inside **this standalone module**, with **no edits** to AzerothCore, Individual Progression, Playerbots or Mod-Naxxramas-Core. A later integration into Naxx Core requires separate owner approval and migration tests.
 
-## Documentation — start here
+## Two essential starting documents
 
-| Document | Purpose |
+1. **[DEVELOPER START HERE](docs/DEVELOPER-START-HERE.md)** — instructions and first read-only technical assignment for a future module editor.
+2. **[MASTER BLUEPRINT](docs/BLUEPRINT.md)** — full design vision, gameplay invariants, version boundaries and hard feasibility conditions.
+
+## Complete blueprint documentation
+
+### Product and historic gameplay
+- [Official project handover](docs/PROJECT-HANDOVER.md) — owner requirements, limitations, future implementation process.
+- [Vanilla gameplay specification](docs/VANILLA-FEATURE-SPEC.md) — tame, ability acquisition, loyalty/happiness, pet training, family balance, XP, stables and bots.
+- [All **17 Vanilla pet families**](docs/VANILLA-FAMILY-REFERENCE.md) — family roles, health/armor/damage ratios, diets, unique skills and 17 source links.
+- [All **21 ability names** and rank levels](docs/ABILITY-CATALOG.md) — rank requirements, TP cost examples, family restrictions, teach-through-use.
+- [Rare and special pet research](docs/RARE-AND-SPECIAL-BEASTS.md) — Broken Tooth, Son of Hakkar, Bloodaxe Worg, rare speeds, special beast source skills.
+- [Player experience and interface](docs/PLAYER-EXPERIENCE-AND-UI.md) — level-10 journey, accessible 3.3.5 trainer UI proposal, possible addon, stable capacity decisions.
+
+### Engineering, compatibility and safety
+- [Technical feasibility](docs/TECHNICAL-FEASIBILITY.md) — what source proves, what remains unproven module-only.
+- [Engine source audit](docs/ENGINE-SOURCE-AUDIT.md) — AzerothCore hooks and classic CMaNGOS comparison references.
+- [Behavioural state machines](docs/STATE-MACHINES.md) — tame, cast-to-learn, train, loyalty, stable, progression and owner isolation.
+- [Persistence, native pet API and migrations](docs/PERSISTENCE-AND-API.md) — proposed module-owned tables, concurrency, idempotence, saved spells, rollback.
+- [IP, Playerbots and Naxx Core interoperability](docs/IP-PLAYERBOTS-INTEROPERABILITY.md) — actual Hunter-era gating, Alt/Random bots, raid AI, strict upstream isolation.
+- [Risk register and hard feasibility gates](docs/RISK-AND-FEASIBILITY-GATES.md) — what must be proven before full development.
+- [QA and acceptance matrix](docs/QA-ACCEPTANCE-MATRIX.md) — reproducible test IDs across the full lifecycle.
+- [Backup and rollback plan](docs/TEST-AND-ROLLBACK.md) — preexisting pets, character DB, installed DBC and safe recovery.
+- [Implementation roadmap and estimate](docs/IMPLEMENTATION-ROADMAP.md) — Stage 0 audit, small prototypes, full Vanilla data, integration and 42–80 approximate developer-days.
+
+### Research and decision provenance
+- [Annotated historical/reference bibliography](docs/REFERENCE-BIBLIOGRAPHY.md) — Classic Petopia, Warcraft Wiki, Wowhead, CMaNGOS Classic, AzerothCore and comparison material.
+- [Research register and missing verification tasks](docs/RESEARCH-REGISTER.md).
+- [Agreed / proposed / open decisions](docs/DECISIONS.md).
+
+## Machine-readable, **research-only** reference tables
+
+| File | Contents | Readiness |
+|---|---|---|
+| [`data/reference/vanilla-families.csv`](data/reference/vanilla-families.csv) | **17** named families; original role, stat modifiers, diets, allowed active abilities and citations | Candidate design data, not deployed family IDs |
+| [`data/reference/vanilla-ability-ranks.csv`](data/reference/vanilla-ability-ranks.csv) | **111** entries across 21 Classic Petopia abilities: rank/level and many cited TP costs | Missing several costs and **all** installed server/client spell IDs |
+| [`data/reference/vanilla-special-beasts.csv`](data/reference/vanilla-special-beasts.csv) | **13** high-value beast examples and documented historic traits | Names/speeds/skills are references; deployed creature IDs still unverified |
+
+**Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
+
+## Known architecture obstacles — don't overpromise
+
+- **Top blocker:** 3.3.5 `Pet::InitLevelupSpellsForLevel` automatically teaches pet spells; no identified general module hook vetoes these grants. **Full authentic manual pet training may be impossible under strict module-only rules**. Prove a reliable, non-destructive approach before broad implementation.
+- AzerothCore keeps happiness, but removed Vanilla loyalty/training points. Existing code must not be duplicated or subverted.
+- Wild pet spell use does not necessarily have a verified successful-cast module callback; a generic cast hook is not enough.
+- 3.3.5 pet talent UI differs from the missing original Beast Training UI.
+- WotLK supports **four stable slots plus one active pet**, compared to Vanilla's **two plus one**. Do not delete or strand existing pets to enforce old limits.
+- Client/server DBC/MPQ may need approved custom assets to recover exact original spell effect values; do not assume names imply matching effects.
+- Mixed IP-era Hunter characters and Playerbot spell/AI refresh require real tests, not merely source inspection.
+
+## Status
+
+| Work | Status |
 |---|---|
-| **[Official project handover](docs/PROJECT-HANDOVER.md)** | Decisions, project boundaries and developer handover instructions |
-| **[Vanilla feature specification](docs/VANILLA-FEATURE-SPEC.md)** | Comprehensive list of proposed original Hunter pet systems and acceptance cases |
-| **[Technical feasibility](docs/TECHNICAL-FEASIBILITY.md)** | AzerothCore hooks, confirmed source observations, uncertain/blocking mechanisms |
-| **[Implementation roadmap](docs/IMPLEMENTATION-ROADMAP.md)** | Feasibility gates, staged approach and preliminary **42–80 developer-day** estimate |
-| **[Test and rollback plan](docs/TEST-AND-ROLLBACK.md)** | Human/bot/IP regression matrix, data safety, backups and acceptance |
-| **[Research register](docs/RESEARCH-REGISTER.md)** | Historical references, data datasets to compile and unanswered research questions |
-| **[Decision log](docs/DECISIONS.md)** | Agreed vs suggested vs open decisions; do not mistake proposals for approval |
+| Vision, requirements and initial research | **Documented; continuously expandable** |
+| 17 families and 111 reference rank rows | **Catalogued from sources, not runtime verified** |
+| Module-only feasibility | **Preliminary, major unresolved blockers** |
+| Source/DB/DBC audit of actual production revision | **Not started** |
+| C++ module / config / migrations / addon | **Not started** |
+| Compiled build, client in-game QA, release | **Not started** |
 
-## Architecture and safety
+No source editor should treat this repository as proof that the restoration is buildable in full. **Research Stage 0 comes first**. The future developer should begin with the [handover assignment](docs/DEVELOPER-START-HERE.md), not with an unreviewed game-system rewrite.
 
-- **Independent development:** Keep experimental C++, configuration, SQL and optional assets in **this module**. Nothing is being merged into [Mod-Naxxramas-Core](https://github.com/CosmicCuddle/Mod-Naxxramas-Core) during research.
-- **Read-only upstream:** Do **not** edit AzerothCore, Individual Progression, Playerbots or Naxxramas Core source to make a prototype work. If an upstream change appears mandatory, **stop and report** why.
-- **Do not assume 3.3.5 is Vanilla:** Its pet UI, pet talents and automated rank learning differ. AzerothCore still has happiness, but **WotLK auto-learning is a major unresolved module-only feasibility blocker**.
-- **No unapproved live changes:** No experimental code, SQL, configuration switches, DBC changes, released artifacts or deployments have been created by this repository planning work.
-- **Backups before future tests:** Snapshot and verify restoration of characters database (including native pet data), module configs, working server build and relevant world/client DBC assets. Test with disposable characters on staging first.
-- **No irreversible pet loss:** Do not enable pet runaway, abandon existing pets, reset pet talents/skills or force stable-capacity changes without an explicit migration policy and owner approval.
-- **Playerbots:** Future compatibility required, but no modification to mod-playerbots; Alt Bots' gear and existing Naxx Core NT1 and consumable systems must remain untouched.
+## Backups and future integration
 
-## What the future module editor should do first
-
-1. Read **all** documentation linked above, especially the handover and decision log.
-2. Perform the read-only **Stage 0** audit of the *deployed* AzerothCore, Individual Progression, mod-playerbots, and Naxx Core revisions and actual pet database state.
-3. Report which requirements are fully possible using documented module hooks, which require a safe compromise, and which are blocked.
-4. Propose the **Broken Tooth attack speed** and **Son of Hakkar ability-discovery** proof-of-concepts with exact tests and rollback.
-5. **Request separate implementation approval** before writing code or applying SQL. Source files, compilation, installation and in-game verification are distinct states.
-
-## Current state
-
-| Area | Status |
-|---|---|
-| Design concept and owner constraints | **Documented** |
-| Historical research and data completeness | **In progress / not validated** |
-| Hook and architectural feasibility | **Preliminary only** |
-| C++ module implementation | **Not started** |
-| SQL migrations, DBC files, client addon | **Not started** |
-| Compile and automated tests | **Not started** |
-| In-game tests / release | **Not started** |
-
-**This repository is currently a coherent specification and development handover—not proof that the restoration is already technically complete or feasible within every stated restriction.**
+When experimental implementation is eventually approved: back up the active module source/config, worldserver build, affected world DB rows, full character DB including native pet/stable/skill tables, and any server+client DBC/MPQ assets; **verify restore in staging** before touching valuable pets. Keep all changes in the separate module. Merge with [Naxxramas Core](https://github.com/CosmicCuddle/Mod-Naxxramas-Core) only after all acceptance gates and a separately approved persistence migration.
