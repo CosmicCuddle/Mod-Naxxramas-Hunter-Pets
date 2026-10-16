@@ -6,6 +6,8 @@
 
 ## Vision
 
+**Scope clarification (16 October 2026):** Aim for the **maximum faithful, safe restoration of the original Vanilla Hunter pet system**, not just a 1.12 snapshot of famous pet features. Research original Vanilla patch history as well as Classic gameplay; clearly separate agreed full-scope goals, historical variations, technical limits, and optional compromises. The planned restoration stays enabled through **all Vanilla IP stages**, while TBC decisions remain future work.
+
 Bring back the time when a Hunter's choice of **specific beast** meant something: original per-creature attack speeds, taming to discover and use new ability ranks, teaching different pets, pet trainer skills, loyalty and happiness, feeding, training points and four active skills, unique family strengths and meaningful rare/dungeon/raid beast hunts.
 
 Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken Tooth** for 1.0-second attacks; **Bloodaxe Worg** for Bite 8, Dash 3 and Furious Howl 4; **Winterspring Screecher** for Claw 8 and Screech 4.
@@ -56,6 +58,12 @@ Illustrative pet goals: **Son of Hakkar** for Lightning Breath rank 6; **Broken 
 | [`data/reference/requirement-traceability.csv`](data/reference/requirement-traceability.csv) | **54** requirement links joining historical sources → developer WP → acceptance QA → decision | All implementation statuses NOT_STARTED, feasibility NOT_PROVEN |
 
 **Important:** 111 is the number of rank/level rows currently enumerated from the Petopia Classic guide, *not* independently certified total for original Vanilla 1.12. Reference catalogues can differ. CSV records and historic guides must not be inserted into an active world database without ID and patch verification.
+
+## Historical references — research first
+
+- [Historical Reference Foundation](docs/HISTORICAL-REFERENCE-FOUNDATION.md) — complete research scope, original patch evidence and sources ranked by confidence.
+- [Original Vanilla Patch Timeline](docs/VANILLA-PATCH-REFERENCE-TIMELINE.md) — highlights pet mechanics introduced, corrected or removed between early Vanilla and the final Vanilla era.
+- [32-source provenance index](data/reference/historical-source-index.csv) — source type, original patch, purpose and required validation. All entries are references; none are production-ready 3.3.5 IDs.
 
 ## Research coordination
 
