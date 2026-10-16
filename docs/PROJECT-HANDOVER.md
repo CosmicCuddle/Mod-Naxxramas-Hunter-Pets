@@ -35,14 +35,14 @@ Naxxramas Core already handles bot talents and consumables, including Hunter pet
 
 ## Reading order for the implementation team
 
-**For a future editor, start with [DEVELOPER-START-HERE.md](DEVELOPER-START-HERE.md) and [BLUEPRINT.md](BLUEPRINT.md).** The master blueprint is now the design index and the root README provides full navigation.
+**For a future editor, start with [UNIFIED-BLUEPRINT-AND-ROADMAP.md](UNIFIED-BLUEPRINT-AND-ROADMAP.md), [DEVELOPER-START-HERE.md](DEVELOPER-START-HERE.md) and [BLUEPRINT.md](BLUEPRINT.md).** The unified programme connects requirements to work packages, acceptance cases and approval gates; the root README provides full navigation.
 
 1. This handover + [decisions](DECISIONS.md): agreements and forbidden changes.
 2. [Master blueprint](BLUEPRINT.md), [Vanilla specification](VANILLA-FEATURE-SPEC.md), [all families](VANILLA-FAMILY-REFERENCE.md), [ability/rank catalogue](ABILITY-CATALOG.md), [special beasts](RARE-AND-SPECIAL-BEASTS.md): the *desired gameplay*.
 3. [Source audit](ENGINE-SOURCE-AUDIT.md), [technical feasibility](TECHNICAL-FEASIBILITY.md), [risk gates](RISK-AND-FEASIBILITY-GATES.md): the *hard module-only blockers*.
 4. [State machines](STATE-MACHINES.md), [persistence and API](PERSISTENCE-AND-API.md), [IP/bot interoperability](IP-PLAYERBOTS-INTEROPERABILITY.md), [player-facing UI](PLAYER-EXPERIENCE-AND-UI.md): the *proposed architecture*.
-5. [QA matrix](QA-ACCEPTANCE-MATRIX.md), [testing/rollback](TEST-AND-ROLLBACK.md), [roadmap](IMPLEMENTATION-ROADMAP.md): the *evidence, staging and release gates*.
-6. [Reference bibliography](REFERENCE-BIBLIOGRAPHY.md), [research register](RESEARCH-REGISTER.md), machine-readable `../data/reference/*.csv`: provenance and gaps. **All datasets are research-only, not verified native 3.3.5 mappings**.
+5. [Work packages](WORK-PACKAGES.md), [QA matrix](QA-ACCEPTANCE-MATRIX.md), [testing/rollback](TEST-AND-ROLLBACK.md), [roadmap](IMPLEMENTATION-ROADMAP.md): the *dependency chain, evidence, staging and release gates*.
+6. [Evidence standards](RESEARCH-EVIDENCE-STANDARDS.md), [reference bibliography](REFERENCE-BIBLIOGRAPHY.md), [research register](RESEARCH-REGISTER.md), machine-readable `../data/reference/*.csv` including [requirement traceability](../data/reference/requirement-traceability.csv): provenance and gaps. **All datasets are research-only, not verified native 3.3.5 mappings**.
 
 ## Development handoff contract
 
