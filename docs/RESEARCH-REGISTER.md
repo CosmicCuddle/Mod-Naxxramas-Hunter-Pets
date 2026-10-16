@@ -48,6 +48,13 @@ Every row must carry a reliable citation and be reviewed before merging into pro
 - Public IP's `SyncBotsProgressionToLeader` can adjust non-normal group members' hidden quest stage on join. Therefore pet policy may change after grouping **without levelling**; it cannot be permanently cached by pet number or inferred from owner's level.
 - [Read-only installed IP inventory](READ-ONLY-INSTALLED-IP-INVENTORY.md) provides a short MobaXterm check of exact source SHA, installed API symbols and optional GM `.ip get` raw-stage cross-check. **The actual worldserver build is still unknown**; no local read or login executed.
 
+## First verified public spell-effect disagreements — five abilities
+
+- [Detailed Classic vs public 3.3.5 research pilot](PUBLIC-335-SPELL-EFFECT-CONFLICT-PILOT.md) now compares Screech 24579, Furious Howl 24604, Lightning Breath 25011, Growl 14916 and original Great Stamina 4187 vs modern pet talent 61686. [Six-case discrepancy CSV](../data/reference/public-335-spell-effect-conflicts.csv) records **reference effects, sources, specific differences, original 1.12/installed 3.3.5 proof status and auto-grant status**.
+- Three examples share their numerical IDs yet have **different damage, mechanics, cooldown, target, passive or focus details** across public Classic and 3.3.5 pages. The modern `Screech` rank 5 **27051** is additionally a wrong-era candidate if mapped as original Rank 4.
+- The [21-ability audit](../data/reference/wotlk-versus-vanilla-ability-audit.csv) now labels five abilities with *public effect-reference* case IDs, while its **actual auto-grant flags remain UNVERIFIED**. Same spell ID = potential client representation, **not original behaviour or installed support**.
+- Evidence index now **115** annotated entries; exact 1.12.1 and the owner's server/client 3.3.5 DBC are still missing. No automatic spell data has been installed.
+
 ## WotLK automatic grant source and DBC comparison — no deployed spell IDs yet
 
 - [Read-only MobaXterm and HeidiSQL DBC input guide](READ-ONLY-WOTLK-PET-DBC-INPUT-CHECKLIST.md) supplies a small safe checklist for server-side DBC file hashes and per-table override counts; it is **not** a completed deployed comparison.
