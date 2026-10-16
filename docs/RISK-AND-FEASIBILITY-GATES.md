@@ -52,7 +52,13 @@
 | R-41 | High | Growl 14916 public 3.3.5 reference adds level threat scaling absent in Classic page; WotLK stamina pet talent 61686 is different from Classic trainer 4187 | Do not mistake matching spell name/rank or Focus/TP costs for functional equivalence; prevent duplicate IP/pet-scaling bonuses |
 | R-42 | **Critical** | Public native `spell_hun_target_self_and_pet` filters `-24604` Furious Howl to pet + master; 53434 Call of the Wild shares handler | No global binding replacement, no assumption adding a second filter restores Vanilla party targets; prove rank and era-specific script compatibility |
 | R-43 | High | SpellScript hit-damage setter works only on target hooks; effect-value setter works only on effect hooks; `DoEffectCalcAmount` cannot change aura type | Match exact server/client 3.3.5 effect types and hook dispatch; incorrect hook silently fails or changes unrelated mechanics |
-| R-44 | **Critical** | Damage/aura script hooks do not establish per-owner native Focus cost, recovery time or correct client tooltip | Never mark spell 'restored' because server damage matches while cast legality/UI/client metadata are false |
+| R-44 | **Critical** | While owner `SPELLMOD_COST` and `SPELLMOD_COOLDOWN` source paths exist, an exact spell-only, era-gated valid aura and client tooltip correctness are **still unproven** | Never mark spell restored from a source API or numeric damage match alone; require strict owner and resource cooldown tests |
+| R-45 | **Critical** | `GlobalScript::OnIsAffectedBySpellModCheck` returning false can **force an affected=true match**, bypassing normal spell family mask | Do not use false as denial; any special match only after validating exact module aura, spell ID and cross-module interference |
+| R-46 | High | `Player::ApplySpellMod` selects by family/mask and applies owner modifiers to pet AND potentially Hunter spells | Prove no identical-family or rank leakage; avoid global shared `SpellInfo` edits and owner-aura benefits outside Vanilla |
+| R-47 | High | `Creature::AddSpellCooldown` modifies spell and category recovery, uses `uint32` values with potentially negative flat modifier | Prove exact cooldown zero-clamp/underflow and category/GCD behaviour before creating a modified cooldown |
+| R-48 | High | Modifier aura applies to **Player** (pet gets owner's modifiers), with life-cycle changes at IP transition, pet stable, bot group sync and module off | Avoid stale modifiers, duplicate talent effects, Playerbot gear/talent refresh or Native aura persistence damage |
+| R-49 | High | `Spell::CallScriptObjectAreaTargetSelectHandlers` invokes scripts sequentially on a **shared mutable target list** | A later additive filter cannot merely retain party members the native Furious Howl script already removed; avoid re-adding unsafe targets |
+
 
 
 
