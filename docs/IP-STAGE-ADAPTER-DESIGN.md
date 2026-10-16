@@ -4,6 +4,14 @@
 **Status:** DESIGN / RESEARCH ONLY. **Not implemented, compiled or tested.**  
 **Owner boundary:** preserve AzerothCore, Individual Progression, Playerbots and Naxx Core upstream source. Any eventual code is within the standalone Hunter Pets module, not the related Naxx Core module. No changes to live DB/client/server.
 
+## Owner-reported version and current target priority (16 October 2026)
+
+The owner confirms their server uses **the newest Individual Progression version**. This is useful project context, but **a version description is not the exact compiled IP/core commit**. Accordingly, the **first development target should be modern hidden-quest IP**: Vanilla stages **0–7**, TBC **8–12**, WotLK **13–18**, with effective eligibility through the installed cap-aware IP API where possible.
+
+This **does not authorise** implementation, install or server changes. Legacy player-settings/IP-stage-7 support is now a **lower-priority compatibility backlog** for the first version, rather than a reason to block continuing modern-first source research. Keep a safe no-mutation fallback if the expected API is absent or the actual build differs. Before compilation, still record exact IP source and compiled worldserver versions.
+
+Bot stage policy remains open because IP may synchronise a bot's hidden milestones on joining a human-led group. WotLK pet auto-learn control also remains **independently unproven**.
+
 ## Key discovery: this project's existing Naxx Core integration is a useful proven *source pattern*
 
 Naxx Core already contains **a build-aware adapter for IP's Vanilla/TBC boundary**:
