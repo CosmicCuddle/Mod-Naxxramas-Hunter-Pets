@@ -31,8 +31,12 @@
 | R-20 | High | `OnSpellCast` does not guarantee target hit for all spell types; `AfterHit` is per-effect/per-target | Test learn-by-use for hit, resisted/immune, missed, interrupted, projectile and non-target spells before granting Hunter knowledge |
 | R-21 | High | Hunter pet attack times overwritten before `OnInitStatsForLevel`, `UpdateAllStats` follows afterward | Prove correct source-specific swing, normalized damage and no reset on life cycle |
 | R-22 | High | Original creature template entry and unique native pet number are available in tame/save paths | Prove stable/relog persistence and source-creature identity rather than infer from model/family/name |
+| R-23 | **Critical** | Family auto spell mapping is loaded from 3.3.5 CreatureFamily/SkillLineAbility DBC into shared SpellMgr maps; exposed accessors are const and no per-owner veto observed | **No shared DBC/map hack**; strict Vanilla rank suppression remains blocked until supported per-owner prelearn interception proven |
+| R-24 | **Critical** | Core emits native pet spellbook packet on async load before `isBeingLoaded=false`; levelup `learnSpell` sends packets immediately outside load | A later player update reconcile cannot promise clean Vanilla spell UI; stop/review if client sees unearned rank |
+| R-25 | High | `AllSpellScript::OnSpellCheckCast` can reject active cast, not native passive aura or skill ownership | Classify active-cast denial as **reduced-fidelity experiment only**; test passives, bot autocasts and triggered spells |
+| R-26 | High | Global metadata manipulation applies beyond a Vanilla-stage owner; post-Vanilla Hunters must remain untouched | Reject cross-era data mutation, unsupported const-cast and global default spell SQL workarounds |
 
-Evidence: [source-pinned lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md), [16-event data](../data/reference/public-core-pet-lifecycle-events.csv). All implementation verdicts remain **NOT PROVEN** until exact deployed source revision and staging tests.
+Evidence: [source-pinned lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md), [16-event data](../data/reference/public-core-pet-lifecycle-events.csv), [auto-grant feasibility verdict](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) and [16 candidate interceptions](../data/reference/auto-spell-interception-candidates.csv). All implementation verdicts remain **NOT PROVEN** until exact deployed source revision and staging tests.
 
 ## Mandatory hard gates (stop on failed gate)
 
