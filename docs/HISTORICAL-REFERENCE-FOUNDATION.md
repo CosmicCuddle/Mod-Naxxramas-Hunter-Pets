@@ -58,6 +58,14 @@ The original [1.9 patch notes archive](https://warcraft.wiki.gg/wiki/Patch_1.9.0
 - Hunter pet base melee attacks became **Physical damage**; earlier Lupos Shadow-damage exception stopped.
 - 'Base pet speed standardized' wording is present. **Important unresolved distinction:** this is often interpreted as *movement speed*, not individual melee attack intervals; Classic Petopia and subsequent Hunter discussions still document Broken Tooth's 1.0-second attack speed. Do not mark original melee speed normalized in 1.9 without a version-specific source/call-graph check.
 
+### Additional original Vanilla patch references
+
+- **1.5:** improved following movement speed and Growl Rank 1, battleground pet resurrection and dead-stable pet fixes. [Original 1.5 notes](https://warcraft.wiki.gg/wiki/Patch_1.5.0).
+- **1.8:** introduced Wind Serpent Lightning Breath. [Original 1.8 notes](https://warcraft.wiki.gg/wiki/Patch_1.8.0).
+- **1.10:** revised Bite/Claw threat, introduced high-level Charge 6 source boars, revised Shell Shield melee slow/cooldown, altered Frenzy proc conditions. [Original 1.10 notes](https://warcraft.wiki.gg/wiki/Patch_1.10.0).
+- **1.11:** altered Scorpid Poison duration and corrected Natural Armor stacking with family armor modifiers. [Original 1.11 notes](https://warcraft.wiki.gg/wiki/Patch_1.11.0).
+- **1.12:** corrected Growl interaction, Ferocity for magic pet abilities, and original model/color preservation for named rare/dungeon creatures on resummon. [Original 1.12 notes](https://warcraft.wiki.gg/wiki/Patch_1.12.0).
+
 ### Later engine changes
 
 - The [WotLK Classic differences](https://www.wow-petopia.com/classic_lk/differences.php) document removal of learned pet training and loyalty, introduction of talent trees and automatic family spells, additional stable slots and 5-level tame catch-up.
