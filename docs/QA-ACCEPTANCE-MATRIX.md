@@ -115,6 +115,14 @@
 | ENG-39 | Interaction with IP UnitScript pet scaling | No duplicate owner-era melee/spell/periodic damage/healing multiplier; original speed or bonuses remain controlled and testable |
 | ENG-40 | Historic IP HunterPetLevelFix assumption | Inspect installed config/SHA and check tame level+stable/relog; do not trust old setting merely because a historical issue describes it |
 | ENG-41 | IP OnPlayerSpellCast versus pet AllSpellScript casting | Show original IP Player-cast cancellation **cannot** stop Pet::learnSpell, and validate actual pet caster path separately |
+| ENG-42 | Modern IP effective stage vs raw rewarded quest stage | Cap-aware `hasPassedProgression` and config take precedence; `.ip get` is raw stage and can intentionally differ under a cap |
+| ENG-43 | Legacy IP header compilation vs modern quest fallback | Stage 7 vs stage 8 boundaries detected; if legacy header unavailable, **no silent Vanilla assumption** from absent modern quests |
+| ENG-44 | IP group sync changes Random Bot stage while grouped | Re-evaluate bot pet policy after `OnAddMember` sync without pet spell/TP/loyalty corruption or forced owner level |
+| ENG-45 | NT1 human issuer stage vs actual bot/pet owner stage | Do **not** inherit issuer as pet owner; demonstrate correct authorisation for Alt Bot and Random Bot without accidental gear/talent changes |
+| ENG-46 | IP battlemaster bot exemption versus Hunter pet training | BG-specific exemption must never allow unrelated pet training/free spell grants or erase the bot's trained state |
+| ENG-47 | Safe `.ip get` check on authorised disposable actor | Read-only raw IP stage result matches historical quest reader; no `.ip set`/`.ip setbot` or player data mutation in diagnostic |
+| ENG-48 | Source worktree HEAD vs actually running worldserver binary | Record difference where build is stale; never claim hook availability merely from a newer `git pull` or GitHub default |
+
 
 
 
