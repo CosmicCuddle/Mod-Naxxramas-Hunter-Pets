@@ -41,6 +41,13 @@ Do not combine original 2004–2006 Vanilla, Classic Era, TBC Classic and WotLK 
 
 Every row must carry a reliable citation and be reviewed before merging into production configuration or SQL.
 
+## WotLK automatic rank suppression feasibility — no strict module-only solution proven
+
+- [Auto-spell learning feasibility report](AUTO-SPELL-LEARNING-FEASIBILITY-DECISION.md) shows current public **SpellMgr** loads Hunter family rank maps from 3.3.5 `CreatureFamily` + `SkillLineAbility` DBC into **global** read-only-exposed lists; Pet::learnSpell grants direct without per-owner learning veto. Editing global data/shared maps is not an approved or era-safe module mechanism.
+- [16 interception candidates](../data/reference/auto-spell-interception-candidates.csv) compare true pre-learn veto (absent), `AllSpellScript::OnSpellCheckCast` cast-denial (candidate only), public `Pet::isBeingLoaded` and PlayerUpdate after-load observation (too late for pet spellbook), passive effects and rejected unsafe hacks.
+- [WP-03 staging protocol](WP03-AUTO-SPELL-LEARNING-STAGING-PROTOCOL.md) specifies backup-first, read-only source+client/DBC verification, logging-only source timings and later explicit approval of any disposable staging mutation, plus client/passive/Playerbot/IP edge cases.
+- [Dedicated issue #4](https://github.com/CosmicCuddle/Mod-Naxxramas-Hunter-Pets/issues/4) tracks this hard research gate. **No owner approval, implementation or staged test so far.**
+
 ## Engine event-order and module-only hard gates — public source audit
 
 - [Source-pinned pet lifecycle audit](SOURCE-PINNED-PET-LIFECYCLE-AUDIT.md) and [16-event call-order index](../data/reference/public-core-pet-lifecycle-events.csv): new tame spell init **before** OnPetAddToWorld, existing pet async saved-spell load **after** OnPetAddToWorld, WotLK auto pet level catchup in tame/load, and native pet save split into independently committed transactions.
