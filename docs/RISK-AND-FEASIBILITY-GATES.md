@@ -50,6 +50,10 @@
 | R-39 | High | Creature defaults use `PetSpellDataId` or summon-template route and deduplicate overlapping level spells | Do not infer tame default spell from an ordinary creature_template spell slot without proving matching runtime route |
 | R-40 | **Critical** | Public Classic and 3.3.5 pages show **same IDs with different effects** (Screech 24579, Furious Howl 24604, Lightning Breath 25011) | Never approve historic-rank ID reuse without effects, cooldown, resource, target, scaling, client data and installed native source proof |
 | R-41 | High | Growl 14916 public 3.3.5 reference adds level threat scaling absent in Classic page; WotLK stamina pet talent 61686 is different from Classic trainer 4187 | Do not mistake matching spell name/rank or Focus/TP costs for functional equivalence; prevent duplicate IP/pet-scaling bonuses |
+| R-42 | **Critical** | Public native `spell_hun_target_self_and_pet` filters `-24604` Furious Howl to pet + master; 53434 Call of the Wild shares handler | No global binding replacement, no assumption adding a second filter restores Vanilla party targets; prove rank and era-specific script compatibility |
+| R-43 | High | SpellScript hit-damage setter works only on target hooks; effect-value setter works only on effect hooks; `DoEffectCalcAmount` cannot change aura type | Match exact server/client 3.3.5 effect types and hook dispatch; incorrect hook silently fails or changes unrelated mechanics |
+| R-44 | **Critical** | Damage/aura script hooks do not establish per-owner native Focus cost, recovery time or correct client tooltip | Never mark spell 'restored' because server damage matches while cast legality/UI/client metadata are false |
+
 
 
 
